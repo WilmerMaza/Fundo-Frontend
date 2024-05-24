@@ -1,0 +1,179 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif; /* Aplica la fuente a todos los elementos */
+    }
+    
+body{
+    margin: 0; 
+    }
+    .container-marcador {
+    position: fixed; /* Cambiado a fixed para que ocupe toda la pantalla */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Ajustado al 100% del ancho de la ventana */
+    height: 100vh; /* Ajustado al 100% del alto de la ventana */
+    background: #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    
+    .cabezera-grid-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr; /* 3 columnas de tamaños proporcionales */
+        grid-gap: 100px; /* Espacio entre las celdas */
+        width: 100%; /* Ajustado al 100% del ancho del contenedor */
+        grid-template-rows: max-content;
+        
+    }
+    
+    .grid-item1, .grid-item3 {
+        font-weight: 600;
+        font-size: 6vw;
+        text-align: center;
+        color: #9A0525;
+        display: grid;
+        grid-template-rows: 1fr auto; /* Dos filas, la primera flexible, la segunda ajustada al contenido */
+        padding: 10px;
+    }
+    
+    .grid-item1 .small-text, .grid-item3 .small-text {
+        font-size: 0.4em; /* Tamaño de fuente más pequeño */
+        align-self: end; /* Alinea la sección inferior al final del contenedor */
+    }
+    
+    .grid-item2 {
+        width: auto; /* Ancho del rectángulo */
+        height: 45%; /* Alto del rectángulo */
+        position: relative;
+        display: flex;
+        align-self: center;
+    }
+    
+    .parte {
+        width: calc(100% / 3); /* Ancho de cada parte, dividiendo el rectángulo en 3 */
+        height: auto; /* Altura de cada parte, igual a la altura del rectángulo */
+        border: 1px solid black; /* Borde para visualización */
+        background-color: white;
+        text-align: center;
+        justify-self: center;
+        font-weight: 600;
+        font-size: 4vw;
+    }
+    
+      .parte1 {
+        border-top-left-radius: 20px; /* Redondear esquina superior izquierda */
+        border-bottom-left-radius: 20px; /* Redondear esquina inferior izquierda */
+      }
+      
+      .parte3{
+        border-top-right-radius: 20px; /* Redondear esquina superior izquierda */
+        border-bottom-right-radius: 20px; /* Redondear esquina inferior izquierda */
+      } 
+    
+    
+      .text{
+  
+    font-weight: 700;
+    font-size: 2.7vw;
+    line-height: 160px;
+    text-align: center;
+    color: #F3A006;
+    display: grid;
+    grid-template-rows: 1fr auto; 
+    padding: 10px;
+    
+      }
+    
+      .informacion{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
+    
+    .tercera-parte__grid {
+        display: grid; /* Utilizar CSS Grid */
+        grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
+        grid-gap: 20px; /* Espacio entre las celdas */
+        padding: 20px; /* Espaciado interno opcional */
+       
+    }
+    
+    .nombre-pais, .bandera, .numero-jugador {
+       // border: 1px solid red;  /*Añadir borde para visualización */
+        height: 100px; /* Altura para visualización */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: clamp(100px, 10vh, 200px); /* Ajustar tamaño de fuente para visualización */
+        color:white;
+       font-weight: 600;
+       line-height: 183px;
+       text-align: center;
+    }
+
+    .Botones{
+        .Linea-amarilla{
+            border: none;
+            border-top: 3px solid yellow; /* Cambia el grosor según sea necesario */
+            margin: 20px 0; 
+            width: 100%;
+           // padding: 20%;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+            grid-template-rows: auto; /* Una fila que se ajusta automáticamente al contenido */
+            gap: 10px; /* Espacio entre celdas */
+            width: 80%; /*Ancho del contenedor en porcentaje del viewport */
+            margin: 0 auto; /* Centrar el contenedor horizontalmente */
+            height: clamp(100px, 10vh, 200px);
+        }
+        .grid-item {
+           background-color: white;
+            padding: 20px; /* Espaciado interno */
+            border-radius: 19.4625px;
+            
+        }
+        .boton-iniciar, .boton-aumentartiempo{
+            width: 100%; /* El botón ocupa todo el espacio de la celda */
+            height: 100%; /* El botón ocupa toda la altura de la celda */
+            border: none; /* Sin borde */
+            color: black; /* Color del texto del botón */
+            font-size: 16px; /* Tamaño de fuente del botón */
+            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+            font-size: clamp(50px, 5vh, 100px);
+            background-color: transparent;
+        }
+    }
+
+    .grid-container-control {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr); /* Seis columnas de igual tamaño */
+        gap: 10px; /* Espacio entre las celdas */
+        width: 80%; /* Ancho del contenedor en porcentaje del viewport */
+        margin: 0 auto; /* Centrar el contenedor horizontalmente */
+        height: clamp(50px, 5vh, 100px);
+        margin-top: 20px;
+        .grid-item__btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            padding: 20px; /* Espaciado interno */
+            border-radius: 19.4625px;
+        }
+        .boton{
+            width: 100%; /* El botón ocupa todo el espacio de la celda */
+            height: 100%; /* El botón ocupa toda la altura de la celda */
+            border: none; /* Sin borde */
+            color: black; /* Color del texto del botón */
+            font-size: 16px; /* Tamaño de fuente del botón */
+            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+            font-size: clamp(50px, 5vh, 100px);
+            background-color: transparent;
+        }
+       
+    }
