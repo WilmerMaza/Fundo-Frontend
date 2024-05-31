@@ -32,4 +32,12 @@ export const routes: Routes = [
                 (c) => c.TimerComponent
             ),
     },
+
+    {
+        path: 'timer2',
+        loadComponent: () =>
+            import('./view/timer2/timer2.component').then(
+                (c) => c.Timer2Component
+            ),
+    },
 ];
