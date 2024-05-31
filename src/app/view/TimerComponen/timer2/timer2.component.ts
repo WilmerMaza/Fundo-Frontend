@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Paises } from '../Timer/Interface/Paises-interface';
+import { TimerService } from '../services/Timer.service';
 
 @Component({
   selector: 'app-timer2',
@@ -8,6 +9,13 @@ import { Paises } from '../Timer/Interface/Paises-interface';
   templateUrl: './timer2.component.html',
   styleUrl: './timer2.component.scss'
 })
-export class Timer2Component {
-  option: Paises={ code:'mx'};
+export class Timer2Component implements OnInit {
+  constructor(private timerService$: TimerService) { }
+
+  ngOnInit(): void {
+    
+    this.timerService$.getListAthletes().subscribe((athletes) => console.log(athletes));
+
+  }
+  option: Paises = { code: 'mx' };
 }
