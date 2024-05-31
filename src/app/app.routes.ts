@@ -28,15 +28,15 @@ export const routes: Routes = [
     {
         path: 'Timer',
         loadComponent: () =>
-            import('./view/Timer/timer.component').then(
+            import('./view/TimerComponen/Timer/timer.component').then(
                 (c) => c.TimerComponent
             ),
     },
 
     {
-        path: 'timer2',
+        path: 'TimerPublic',
         loadComponent: () =>
-            import('./view/timer2/timer2.component').then(
+            import('./view/TimerComponen/timer2/timer2.component').then(
                 (c) => c.Timer2Component
             ),
     },
