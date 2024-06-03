@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+
 export const routes: Routes = [
     {
         path: '',
@@ -29,8 +30,8 @@ export const routes: Routes = [
         path: 'Timer',
         loadComponent: () =>
             import('./view/TimerComponen/Timer/timer.component').then(
-                (c) => c.TimerComponent
-            ),
+                (c) => c.TimerComponent  
+           ),
     },
 
     {

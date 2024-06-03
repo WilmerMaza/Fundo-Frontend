@@ -76,13 +76,13 @@ body {
 
 .text {
   font-weight: 700;
-  font-size: 2.7vw;
+  font-size: 2.5vw;
   line-height: 160px;
   text-align: center;
   color: #f3a006;
   display: grid;
   grid-template-rows: 1fr auto;
-  padding: 10px;
+  //padding: 10px;
   align-items: center;
 }
 
@@ -96,7 +96,8 @@ body {
   display: grid; /* Utilizar CSS Grid */
   grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
   /* grid-gap: 20px; Espacio entre las celdas */
-  padding-top: 3%; /* Espaciado interno opcional */
+  padding-top: 4%; /* Espaciado interno opcional */
+  padding-bottom: 2%;
 }
 
 .nombre-pais,
@@ -116,22 +117,23 @@ body {
   font-weight: 600;
   line-height: 183px;
   text-align: center;
+  text-transform: uppercase; //Letras en mayuscula
 }
 
 .Botones {
   .Linea-amarilla {
     border: none;
-    border-top: 3px solid yellow; /* Cambia el grosor según sea necesario */
-    margin: 20px 0;
-    width: 100%;
-    // padding: 20%;
+    border-top: 10px solid yellow; /* Cambia el grosor según sea necesario */
+    margin: 20px auto;
+    width: 80%;
+    padding-top: 1%;
   }
 
   .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
     grid-template-rows: auto; /* Una fila que se ajusta automáticamente al contenido */
-    gap: 10px; /* Espacio entre celdas */
+    gap: 1%; /* Espacio entre celdas */
     width: 80%; /*Ancho del contenedor en porcentaje del viewport */
     margin: 0 auto; /* Centrar el contenedor horizontalmente */
     height: clamp(100px, 10vh, 200px);
@@ -157,17 +159,17 @@ body {
 .grid-container-control {
   display: grid;
   grid-template-columns: repeat(6, 1fr); /* Seis columnas de igual tamaño */
-  gap: 10px; /* Espacio entre las celdas */
+  gap: 1%; /* Espacio entre las celdas */
   width: 80%; /* Ancho del contenedor en porcentaje del viewport */
   margin: 0 auto; /* Centrar el contenedor horizontalmente */
-  height: clamp(50px, 5vh, 100px);
+ // height: clamp(50px, 5vh, 100px);
   margin-top: 20px;
   .grid-item__btn {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
-    padding: 20px; /* Espaciado interno */
+    //padding: 20px;  /*Espaciado interno */
     border-radius: 19.4625px;
   }
   .boton {
@@ -175,9 +177,8 @@ body {
     height: 100%; /* El botón ocupa toda la altura de la celda */
     border: none; /* Sin borde */
     color: black; /* Color del texto del botón */
-    font-size: 16px; /* Tamaño de fuente del botón */
     cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    font-size: clamp(50px, 5vh, 100px);
+   // font-size: clamp(50px, 5vh, 100px);
     background-color: transparent;
   }
 }
@@ -192,7 +193,7 @@ body {
 
   .tiempo {
     font-weight: 500;
-    font-size: 15vw;
+    font-size: 11vw;
     text-align: center;
     color: #9a0525;
     padding: 10px;
@@ -200,8 +201,8 @@ body {
 }
 
 span.flag {
-  width: 144px;
-  height: 100px;
+  width: 250px;
+  height: 170px;
   display: inline-block;
 }
 img.flag {

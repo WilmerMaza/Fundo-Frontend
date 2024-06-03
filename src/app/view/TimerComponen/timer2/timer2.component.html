@@ -1,8 +1,7 @@
 <section class="marcador">
   <div class="container-marcador">
     <div class="marcador">
-        <div class=" tiempo"> 00:00</div>
-            
+      <div class="tiempo">{{formattedTime}}</div>
     </div>
     <div class="cabezera-grid-container">
       <div class="grid-item1">
@@ -13,7 +12,7 @@
       <div class="informacion">
         <div class="text">
           <h1 class="nombre">MEZA GOMEZ</h1>
-          <h2 class="nombre2">Alberto Jose</h2>
+          <h2 class="nombre2">{{ informacion.Name }}</h2>
         </div>
       </div>
       <div class="grid-item3">
@@ -24,11 +23,11 @@
 
     <div class="tercera-parte">
       <div class="tercera-parte__grid">
-        <div class="nombre-pais">MEX</div>
+        <div class="nombre-pais">{{ generalPais(informacion.IwfCoiCode) }}</div>
         <div class="bandera">
-          <span [class]="'flag flag-' + option.code"></span>
+          <span [class]="'flag flag-' + informacion.IwfCoiCode"></span>
         </div>
-        <div class="numero-jugador">6</div>
+        <div class="numero-jugador">{{ informacion.Numero_Sorteo }}</div>
       </div>
     </div>
 
@@ -38,42 +37,50 @@
 
       <div class="grid-container">
         <div class="grid-item">
-          <button class="boton-iniciar">INICIAR</button>
+          <button
+            class="boton-iniciar"
+            (click)="sentCronometro('start', '003')"
+          >
+            <strong>INICIAR </strong>
+          </button>
+          <p>Timestamp: {{ Cronometro.timestamp }}</p>
         </div>
         <div class="grid-item">
-          <button class="boton-aumentartiempo">AUMENTAR TIEMPO</button>
+          <button class="boton-aumentartiempo" (click)="sentCronometro('increase time', '003')">
+            <strong>AUMENTAR TIEMPO </strong>
+          </button>
         </div>
       </div>
       <!-- Botones pequeños-->
 
       <div class="grid-container-control">
         <div class="grid-item__btn">
-          <button class="boton">
-            <img src="../../../assets/img/Pause.webp"/>
+          <button class="boton" (click)="sentCronometro('pause', '003')">
+            <img src="../../../assets/img/Pause.webp" />
           </button>
         </div>
         <div class="grid-item__btn">
-          <button class="boton">
-            <img src="../../../assets/img/Pause2.webp"/>
+          <button class="boton" (click)="sentCronometro('stop', '003')">
+            <img src="../../../assets/img/Pause2.webp" />
           </button>
         </div>
         <div class="grid-item__btn">
-          <button class="boton">
+          <button class="boton" (click)="sentCronometro('return', '003')">
             <img src="../../../assets/img/Repeticion.webp" />
           </button>
         </div>
         <div class="grid-item__btn">
-          <button class="boton">
-            <img src="../../../assets/img/Levantamiento.webp"/>
+          <button class="boton" (click)="sentCronometro('force', '003')">
+            <img src="../../../assets/img/Levantamiento.webp" />
           </button>
         </div>
         <div class="grid-item__btn">
-          <button class="boton">
-            <img src="../../../assets/img/Mancuernas.webp"/>
+          <button class="boton" (click)="sentCronometro('weight', '003')">
+            <img src="../../../assets/img/Mancuernas.webp" />
           </button>
         </div>
         <div class="grid-item__btn">
-          <button class="boton"> </button>
+          <button class="boton"></button>
         </div>
       </div>
     </div>
