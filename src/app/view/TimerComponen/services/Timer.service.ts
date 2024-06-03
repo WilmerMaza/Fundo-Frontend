@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FundoService } from '../../../services/Fundo.service';
+import { Observable } from 'rxjs';
+import { datos, requestSuccefull } from '../Timer/Interface/Datos-interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -7,13 +9,12 @@ import { FundoService } from '../../../services/Fundo.service';
 export class TimerService {
   constructor(private fundoService$: FundoService) {}
 
-  getListAthletes() {
+  getListAthletes(): Observable<datos[]> {
     const endpoin = 'register/athletes';
     return this.fundoService$.get(endpoin);
   }
 
-  //NUEVO
-  postListCronometro(event: string, partidaId: string) {
+  postListCronometro(event: string, partidaId: string):Observable<requestSuccefull> {
     const endpoin = `cronometro/${event}/${partidaId}`;
     return this.fundoService$.post(endpoin);
   }

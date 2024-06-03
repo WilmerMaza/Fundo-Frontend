@@ -1,5 +1,3 @@
-import { Data } from "@angular/router";
-
 export interface datos {
   id: string;
   Name: string;
@@ -12,8 +10,10 @@ export interface datos {
   updatedAt: string;
 }
 
-//NUEVO
+export interface cronometro {
+  timestamp: any;
+}
 
-export interface cronometro{
-  timestamp:any;
+export interface requestSuccefull {
+  message: string;
 }

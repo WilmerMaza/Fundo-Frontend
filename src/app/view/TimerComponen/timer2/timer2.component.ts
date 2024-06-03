@@ -14,67 +14,66 @@ export class Timer2Component implements OnInit, OnDestroy {
   public informacion: datos = {} as datos;
   public Cronometro: cronometro = {} as cronometro;
   private intervalId: any;
-  
-  private totalSeconds: number =  60;  // Tiempo total configurable
-  public currentSeconds: number = 0; // Segundos transcurridos
+  private totalSeconds: number = 60;
+  public currentSeconds: number = 0;
   public running: boolean = false;
-  private pausedTime: number = 0; // Tiempo almacenado al pausar
+  private pausedTime: number = 0;
 
   constructor(private timerService$: TimerService) {}
 
   ngOnInit(): void {
-    this.timerService$.getListAthletes().subscribe((athletes: datos[]) => {
-      this.informacion = athletes[1];
-      console.log(athletes);
-    });
+    this.getInformation();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.clearTimer();
   }
 
-  startTimer() {
+  getInformation(): void {
+    this.timerService$.getListAthletes().subscribe((athletes: datos[]) => {
+      this.informacion = athletes[1];
+    });
+  }
+
+  startTimer(): void {
     if (!this.running && this.currentSeconds < this.totalSeconds) {
       this.running = true;
       this.intervalId = setInterval(() => {
         this.currentSeconds++;
         if (this.currentSeconds >= this.totalSeconds) {
-          this.pauseTimer() 
+          this.pauseTimer();
         }
       }, 1000);
     }
   }
 
-  pauseTimer() {
+  pauseTimer(): void {
     if (this.running) {
       this.running = false;
       this.clearTimer();
-      this.pausedTime = this.currentSeconds; // Almacenar el tiempo al pausar
+      this.pausedTime = this.currentSeconds;
     }
   }
-//MODIFICAR
-  stopTimer() {
+
+  stopTimer(): void {
     if (!this.running && this.pausedTime > 0) {
-      this.currentSeconds = this.pausedTime; // Continuar desde el tiempo pausado
-      this.startTimer(); // Reanudar el cronómetro
+      this.currentSeconds = this.pausedTime;
+      this.startTimer();
     }
-    
   }
 
-  resetTimer() {
-
+  resetTimer(): void {
     this.running = false;
     this.clearTimer();
     this.currentSeconds = 0;
-    this.totalSeconds = 60; // Restablecer el tiempo total a su valor original
-   
+    this.totalSeconds = 60;
   }
 
-  increaseTime(secondsToAdd: number) {
+  increaseTime(secondsToAdd: number): void {
     this.totalSeconds += secondsToAdd;
   }
 
-  clearTimer() {
+  clearTimer(): void {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
@@ -90,7 +89,7 @@ export class Timer2Component implements OnInit, OnDestroy {
 
   sentCronometro(action: string, partidaId: string): void {
     this.timerService$.postListCronometro(action, partidaId).subscribe();
-    switch(action) {
+    switch (action) {
       case 'start':
         this.startTimer();
         break;
@@ -104,9 +103,9 @@ export class Timer2Component implements OnInit, OnDestroy {
         this.resetTimer();
         break;
       case 'increase time':
-        this.increaseTime(60); // Aumentar 60 segundos
+        this.increaseTime(60);
         break;
-      // Puedes añadir más casos aquí si es necesario
+
       default:
         break;
     }

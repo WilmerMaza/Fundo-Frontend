@@ -86,7 +86,6 @@ body {
   color: #f3a006;
   display: grid;
   grid-template-rows: 1fr auto;
-  // padding: 50px;
   align-items: center;
 }
 
@@ -98,17 +97,16 @@ body {
 }
 
 .tercera-parte__grid {
-  display: grid; /* Utilizar CSS Grid */
-  grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
-  grid-gap: 20px; /* Espacio entre las celdas */
-  padding-top: 200px; /* Espaciado interno opcional */
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px; 
+  padding-top: 200px; 
 }
 
 .nombre-pais,
 .bandera,
 .numero-jugador {
-  // border: 1px solid red;  /*Añadir borde para visualización */
-  height: 100px; /* Altura para visualización */
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,13 +114,13 @@ body {
     100px,
     10vh,
     200px
-  ); /* Ajustar tamaño de fuente para visualización */
+  ); 
   color: white;
   font-weight: 600;
   line-height: 183px;
   text-align: center;
   height: clamp(100px, 10vh, 200px);
-  text-transform: uppercase; //Letras en mayuscula
+  text-transform: uppercase;
 }
 
 span.flag {
@@ -131,7 +129,7 @@ span.flag {
   display: inline-block;
 }
 img.flag {
-  width: 50px; //30
+  width: 50px;
 }
 .flag {
   background: url(../../../../assets/Banderas/flags_responsive.png) no-repeat;
