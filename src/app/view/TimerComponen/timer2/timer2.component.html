@@ -1,5 +1,5 @@
 <section class="marcador">
-  <div class="container-marcador">
+  <div class="container-marcador" style="overflow-y: auto;">
     <div class="marcador">
       <div class="tiempo">{{formattedTime}}</div>
     </div>
@@ -43,7 +43,6 @@
           >
             <strong>INICIAR </strong>
           </button>
-          <p>Timestamp: {{ Cronometro.timestamp }}</p>
         </div>
         <div class="grid-item">
           <button class="boton-aumentartiempo" (click)="sentCronometro('increase time', '003')">
@@ -56,27 +55,27 @@
       <div class="grid-container-control">
         <div class="grid-item__btn">
           <button class="boton" (click)="sentCronometro('pause', '003')">
-            <img src="../../../assets/img/Pause.webp" />
+            <img src="../../../assets/img/Pause.webp"  class="Imagen-action" alt="Pause"/>
           </button>
         </div>
         <div class="grid-item__btn">
           <button class="boton" (click)="sentCronometro('stop', '003')">
-            <img src="../../../assets/img/Pause2.webp" />
+            <img src="../../../assets/img/Pause2.webp" class="Imagen-action" alt="Stop" />
           </button>
         </div>
         <div class="grid-item__btn">
           <button class="boton" (click)="sentCronometro('return', '003')">
-            <img src="../../../assets/img/Repeticion.webp" />
+            <img src="../../../assets/img/Repeticion.webp" class="Imagen-action" alt="Return"/>
           </button>
         </div>
         <div class="grid-item__btn">
           <button class="boton" (click)="sentCronometro('force', '003')">
-            <img src="../../../assets/img/Levantamiento.webp" />
+            <img src="../../../assets/img/Levantamiento.webp" class="Imagen-action" alt="Force" />
           </button>
         </div>
         <div class="grid-item__btn">
           <button class="boton" (click)="sentCronometro('weight', '003')">
-            <img src="../../../assets/img/Mancuernas.webp" />
+            <img src="../../../assets/img/Mancuernas.webp"  class="Imagen-action" alt="weight"/>
           </button>
         </div>
         <div class="grid-item__btn">

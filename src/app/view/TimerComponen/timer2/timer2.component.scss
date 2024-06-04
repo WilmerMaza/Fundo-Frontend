@@ -2,27 +2,27 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif; /* Aplica la fuente a todos los elementos */
+  font-family: "Montserrat", sans-serif; 
 }
 
 body {
   margin: 0;
 }
 .container-marcador {
-  position: fixed; /* Cambiado a fixed para que ocupe toda la pantalla */
+  position: fixed; 
   top: 0;
   left: 0;
-  width: 100vw; /* Ajustado al 100% del ancho de la ventana */
-  height: 100vh; /* Ajustado al 100% del alto de la ventana */
+  width: 100vw; 
+  height: 100vh;
   background: #000000;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .cabezera-grid-container {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr; /* 3 columnas de tamaños proporcionales */
-  grid-gap: 100px; /* Espacio entre las celdas */
-  width: 100%; /* Ajustado al 100% del ancho del contenedor */
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-gap: 100px; 
+  width: 100%; 
   grid-template-rows: max-content;
 }
 
@@ -33,19 +33,20 @@ body {
   text-align: center;
   color: #9a0525;
   display: grid;
-  grid-template-rows: 1fr auto; /* Dos filas, la primera flexible, la segunda ajustada al contenido */
+  grid-template-rows: 1fr auto; 
   padding: 10px;
+  
 }
 
 .grid-item1 .small-text,
 .grid-item3 .small-text {
-  font-size: 0.4em; /* Tamaño de fuente más pequeño */
-  align-self: end; /* Alinea la sección inferior al final del contenedor */
+  font-size: 0.4em;
+  align-self: end; 
 }
 
 .grid-item2 {
-  width: auto; /* Ancho del rectángulo */
-  height: 45%; /* Alto del rectángulo */
+  width: auto; 
+  height: 45%; 
   position: relative;
   display: flex;
   align-self: center;
@@ -54,9 +55,9 @@ body {
 .parte {
   width: calc(
     100% / 3
-  ); /* Ancho de cada parte, dividiendo el rectángulo en 3 */
-  height: auto; /* Altura de cada parte, igual a la altura del rectángulo */
-  border: 1px solid black; /* Borde para visualización */
+  ); 
+  height: auto; 
+  border: 1px solid black; 
   background-color: white;
   text-align: center;
   justify-self: center;
@@ -65,13 +66,13 @@ body {
 }
 
 .parte1 {
-  border-top-left-radius: 20px; /* Redondear esquina superior izquierda */
-  border-bottom-left-radius: 20px; /* Redondear esquina inferior izquierda */
+  border-top-left-radius: 20px; 
+  border-bottom-left-radius: 20px; 
 }
 
 .parte3 {
-  border-top-right-radius: 20px; /* Redondear esquina superior izquierda */
-  border-bottom-right-radius: 20px; /* Redondear esquina inferior izquierda */
+  border-top-right-radius: 20px; 
+  border-bottom-right-radius: 20px; 
 }
 
 .text {
@@ -82,8 +83,10 @@ body {
   color: #f3a006;
   display: grid;
   grid-template-rows: 1fr auto;
-  //padding: 10px;
   align-items: center;
+  .nombre, .nombre2{
+    height: 100%;
+  }
 }
 
 .informacion {
@@ -93,18 +96,16 @@ body {
 }
 
 .tercera-parte__grid {
-  display: grid; /* Utilizar CSS Grid */
-  grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
-  /* grid-gap: 20px; Espacio entre las celdas */
-  padding-top: 4%; /* Espaciado interno opcional */
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  padding-top: 4%; 
   padding-bottom: 2%;
 }
 
 .nombre-pais,
 .bandera,
 .numero-jugador {
-  // border: 1px solid red;  /*Añadir borde para visualización */
-  height: 100px; /* Altura para visualización */
+  height: 100px; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,18 +113,18 @@ body {
     100px,
     10vh,
     200px
-  ); /* Ajustar tamaño de fuente para visualización */
+  );
   color: white;
   font-weight: 600;
   line-height: 183px;
   text-align: center;
-  text-transform: uppercase; //Letras en mayuscula
+  text-transform: uppercase;
 }
 
 .Botones {
   .Linea-amarilla {
     border: none;
-    border-top: 10px solid yellow; /* Cambia el grosor según sea necesario */
+    border-top: 10px solid yellow; 
     margin: 20px auto;
     width: 80%;
     padding-top: 1%;
@@ -131,26 +132,26 @@ body {
 
   .grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
-    grid-template-rows: auto; /* Una fila que se ajusta automáticamente al contenido */
-    gap: 1%; /* Espacio entre celdas */
-    width: 80%; /*Ancho del contenedor en porcentaje del viewport */
-    margin: 0 auto; /* Centrar el contenedor horizontalmente */
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: auto; 
+    gap: 1%; 
+    width: 80%; 
+    margin: 0 auto; 
     height: clamp(100px, 10vh, 200px);
   }
   .grid-item {
     background-color: white;
-    padding: 15px; /* Espaciado interno */
+    padding: 15px; 
     border-radius: 19.4625px;
   }
   .boton-iniciar,
   .boton-aumentartiempo {
-    width: 100%; /* El botón ocupa todo el espacio de la celda */
-    height: 100%; /* El botón ocupa toda la altura de la celda */
-    border: none; /* Sin borde */
-    color: black; /* Color del texto del botón */
-    font-size: 16px; /* Tamaño de fuente del botón */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    width: 100%; 
+    height: 100%;
+    border: none; 
+    color: black; 
+    font-size: 16px; 
+    cursor: pointer;
     font-size: clamp(50px, 5vh, 100px);
     background-color: transparent;
   }
@@ -158,38 +159,36 @@ body {
 
 .grid-container-control {
   display: grid;
-  grid-template-columns: repeat(6, 1fr); /* Seis columnas de igual tamaño */
-  gap: 1%; /* Espacio entre las celdas */
-  width: 80%; /* Ancho del contenedor en porcentaje del viewport */
-  margin: 0 auto; /* Centrar el contenedor horizontalmente */
- // height: clamp(50px, 5vh, 100px);
+  grid-template-columns: repeat(6, 1fr); 
+  gap: 1%; 
+  width: 80%; 
+  margin: 0 auto; 
+
   margin-top: 20px;
   .grid-item__btn {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
-    //padding: 20px;  /*Espaciado interno */
+   
     border-radius: 19.4625px;
   }
   .boton {
-    width: 100%; /* El botón ocupa todo el espacio de la celda */
-    height: 100%; /* El botón ocupa toda la altura de la celda */
-    border: none; /* Sin borde */
-    color: black; /* Color del texto del botón */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-   // font-size: clamp(50px, 5vh, 100px);
+    width: 100%; 
+    height: 100%; 
+    border: none; 
+    color: black; 
+    cursor: pointer; 
+   
     background-color: transparent;
   }
 }
 
 .marcador {
   display: grid;
-  grid-template-columns: 1fr; /* Una sola columna que ocupa todo el espacio disponible */
-  grid-template-rows: 1fr; /* Una sola fila que ocupa todo el espacio disponible */
-  /* width: 100%; Ajusta el ancho del contenedor según sea necesario */
-  /*height: 100vh;  Ajusta la altura del contenedor según sea necesario */
-  place-items: center; /* Centrar contenido tanto vertical como horizontalmente */
+  grid-template-columns: 1fr; 
+  grid-template-rows: 1fr; 
+  place-items: center; 
 
   .tiempo {
     font-weight: 500;
@@ -939,3 +938,415 @@ img.flag {
 .flag-zw {
   background-position: 0 100%;
 }
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .container-marcador {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw; 
+    height: 100vh; 
+    background: #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  .cabezera-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-gap: 2px;
+    width: 100%;
+    height: auto;
+    grid-template-rows: 100px 100px
+  }
+  
+  .grid-item1,
+  .grid-item3 {
+    font-weight: 600;
+    font-size: 9vw;
+    text-align: center;
+    color: #9a0525;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding: 10px;
+  }
+  
+  .grid-item1 .small-text,
+  .grid-item3 .small-text {
+    font-size: 0.4em; 
+    align-self: end;
+  }
+  
+  .grid-item2 {
+    width: auto; 
+    height: 45%; 
+    position: relative;
+    display: flex;
+    align-self: center;
+  }
+  
+  .parte {
+    width: calc(
+      100% / 3
+    ); 
+    height: auto; 
+    border: 1px solid black; 
+    background-color: white;
+    text-align: center;
+    justify-self: center;
+    font-weight: 600;
+    font-size: 4vw;
+  }
+  
+  .parte1 {
+    border-top-left-radius: 20px; 
+    border-bottom-left-radius: 20px;
+  }
+  
+  .parte3 {
+    border-top-right-radius: 20px; 
+    border-bottom-right-radius: 20px; 
+  }
+  
+  .text {
+    font-weight: 700;
+    font-size: 3.5vw;
+    line-height: 160px;
+    text-align: center;
+    color: #f3a006;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    align-items: center;
+    grid-template-rows: 100px 100px;
+    align-items: center;
+        justify-items: stretch;
+    .nombre, .nombre2{
+      height: 100%;
+    }
+  }
+  
+  .informacion {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+  }
+  
+  .tercera-parte__grid {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+   
+    padding-top: 4%; 
+    padding-bottom: 2%;
+  }
+  
+  .nombre-pais,
+  .bandera,
+  .numero-jugador {
+    
+    height: 100px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(
+      70px,
+      5vh,
+      100px
+    ); 
+    color: white;
+    font-weight: 600;
+    line-height: 183px;
+    text-align: center;
+    text-transform: uppercase; 
+  }
+  
+  .Botones {
+    .Linea-amarilla {
+      border: none;
+      border-top: 5px solid yellow; 
+      margin: 20px auto;
+      width: 80%;
+      padding-top: 1%;
+    }
+  
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1%;
+      width: 81%;
+      margin: 0 auto;
+      height: clamp(50px, 5vh, 100px);
+      grid-template-rows: 65px;
+    }
+    .grid-item {
+      background-color: white;
+      padding: 15px; 
+      border-radius: 19.4625px;
+    }
+    .boton-iniciar,
+    .boton-aumentartiempo {
+   
+      font-size: 27px; 
+      cursor: pointer; 
+    
+    }
+  }
+
+  
+.grid-container-control {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); 
+  gap: 1%; 
+  width: 80%; 
+  margin: 0 auto; 
+grid-template-rows: 50px; 
+  margin-top: 25px;
+  .grid-item__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 19.4625px;
+    
+  }
+  .boton {
+    width: 100%; 
+    height: 100%; 
+    border: none; 
+    color: black; 
+    cursor: pointer; 
+    background-color: transparent;
+    .Imagen-action{
+      height: 100% 
+    }
+  }
+}
+  
+.marcador {
+  display: grid;
+  grid-template-columns: 1fr; 
+  grid-template-rows: 1fr; 
+  place-items: center; 
+
+  .tiempo {
+    font-weight: 500;
+    font-size: 15vw;
+    text-align: center;
+    color: #9a0525;
+    padding: 10px;
+  }
+}
+
+span.flag {
+  width: 100px;
+  height: 70px;
+  display: inline-block;
+}
+img.flag {
+  width: 30px;
+}
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1900px) {
+  
+  .container-marcador {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw; 
+    height: 100vh; 
+    background: #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  .cabezera-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-gap: 2px;
+    width: 100%;
+    height: auto;
+    grid-template-rows: 100px 100px;
+    align-items: center;
+  }
+  
+  .grid-item1,
+  .grid-item3 {
+    font-weight: 600;
+    font-size: 9vw;
+    text-align: center;
+    color: #9a0525;
+    display: grid;
+    grid-template-rows: 1fr auto; 
+    padding: 10px;
+  }
+  
+  .grid-item1 .small-text,
+  .grid-item3 .small-text {
+    font-size: 0.4em; 
+    align-self: end; 
+  }
+  
+  .grid-item2 {
+    width: auto; 
+    height: 45%; 
+    position: relative;
+    display: flex;
+    align-self: center;
+  }
+  
+  .parte {
+    width: calc(
+      100% / 3
+    ); 
+    height: auto; 
+    border: 1px solid black; 
+    background-color: white;
+    text-align: center;
+    justify-self: center;
+    font-weight: 600;
+    font-size: 4vw;
+  }
+  
+  .parte1 {
+    border-top-left-radius: 20px; 
+    border-bottom-left-radius: 20px; 
+  }
+  
+  .parte3 {
+    border-top-right-radius: 20px; 
+    border-bottom-right-radius: 20px; 
+  }
+  
+  .text {
+    font-weight: 700;
+    font-size: 3vw;
+    line-height: 160px;
+    text-align: center;
+    color: #f3a006;
+    display: grid;
+    grid-template-rows: 100px 100px;
+    align-items: center;
+        justify-items: stretch;
+    .nombre, .nombre2{
+      height: 100%;
+    }
+  }
+  
+  .informacion {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+  }
+  
+  .tercera-parte__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    padding: 3%;
+  }
+  
+  .nombre-pais,
+  .bandera,
+  .numero-jugador {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(
+      70px,
+      5vh,
+      100px
+    ); 
+    color: white;
+    font-weight: 600;
+    line-height: 183px;
+    text-align: center;
+    text-transform: uppercase; //Letras en mayuscula
+  }
+  
+  .Botones {
+    .Linea-amarilla {
+      border: none;
+      border-top: 5px solid yellow; /* Cambia el grosor según sea necesario */
+      margin: 20px auto;
+      width: 80%;
+      padding-top: 1%;
+    }
+  
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1%;
+      width: 81%;
+      margin: 0 auto;
+      height: clamp(50px, 5vh, 100px);
+      grid-template-rows: 65px;
+    }
+    .grid-item {
+      background-color: white;
+      padding: 15px; 
+      border-radius: 19.4625px;
+    }
+    .boton-iniciar,
+    .boton-aumentartiempo {
+   
+      font-size: 27px; 
+      cursor: pointer; 
+    
+    }
+  }
+
+  
+.grid-container-control {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); 
+  gap: 1%; 
+  width: 80%; 
+  margin: 0 auto; 
+grid-template-rows: 50px; //NUEVO2
+  margin-top: 30px;
+  .grid-item__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 19.4625px;
+    
+  }
+  .boton {
+    width: 100%; 
+    height: 100%; 
+    border: none; 
+    color: black; 
+    cursor: pointer; 
+    background-color: transparent;
+    .Imagen-action{
+      height: 100% //NUEVO3;
+    }
+  }
+}
+  
+.marcador {
+  display: grid;
+  grid-template-columns: 1fr; 
+  grid-template-rows: 1fr; 
+  place-items: center; 
+
+  .tiempo {
+    font-weight: 500;
+    font-size: 13vw;
+    text-align: center;
+    color: #9a0525;
+    padding: 10px;
+  }
+}
+
+span.flag {
+  width: 100px;
+  height: 70px;
+  display: inline-block;
+}
+img.flag {
+  width: 30px;
+}
+
+}
+  
+
