@@ -9,10 +9,11 @@ import { environment } from '../../environments/environment';
 })
 export class CryptoService {
   private getHexaKey = environment.GetHexaKey;
+  
+
   constructor() { }
 
   private GetKey = () => enc.Utf8.parse(this.getHexaKey);
-
   public Encript = (value: string): CipherParams =>
     AES.encrypt(value, this.GetKey());
 

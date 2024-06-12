@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
+import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { KEYSESSION } from '../models/constan';
-import { DataUser, session } from '../models/dataUserModel';
+import { session } from '../models/dataUserModel';
 import { Persistence } from './persistence.service';
 
 @Injectable({
@@ -10,12 +11,14 @@ import { Persistence } from './persistence.service';
 })
 
 export class AuthService extends ComponentStore<session> {
+
   private jwt: string = '';
 
   constructor(private persistence$: Persistence) {
     super({} as session);
 
     const isAuth = persistence$.get(KEYSESSION);
+
     if (isAuth) {
       this.setAuth(isAuth);
     }
@@ -31,7 +34,7 @@ export class AuthService extends ComponentStore<session> {
     if (token) {
       try {
         // Decodificar el token
-        const tokenPayload: any = "";
+        const tokenPayload: any = jwtDecode(token);
 
         // Obtener la fecha de expiración del token en segundos
         const expirationDateInSeconds = tokenPayload.exp;
@@ -64,9 +67,12 @@ export class AuthService extends ComponentStore<session> {
   });
 
   readonly getToken: Observable<string> = this.select((state: session) => state.token);
-  readonly getDataUser: Observable<DataUser> = this.select((state: session) => {
-    const tokenPayload: any = "jwtDecode(state.token)";
+
+  readonly getDataUser: Observable<any> = this.select((state: session) => {
+    const tokenPayload: any = jwtDecode(state.token);
     const { dataUser } = tokenPayload;
     return dataUser;
   });
 }
+
+
