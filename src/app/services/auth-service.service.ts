@@ -3,7 +3,7 @@ import { ComponentStore } from '@ngrx/component-store';
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { KEYSESSION } from '../models/constan';
-import { session } from '../models/dataUserModel';
+import { Ijwt, session } from '../models/dataUserModel';
 import { Persistence } from './persistence.service';
 
 @Injectable({
@@ -34,13 +34,17 @@ export class AuthService extends ComponentStore<session> {
     if (token) {
       try {
         // Decodificar el token
-        const tokenPayload: any = jwtDecode(token);
+        const { exp, platform }: Ijwt = jwtDecode(token);
 
         // Obtener la fecha de expiración del token en segundos
-        const expirationDateInSeconds = tokenPayload.exp;
+        const expirationDateInSeconds = exp;
 
         // Obtener la fecha actual en segundos
         const currentDateInSeconds = Math.floor(Date.now() / 1000);
+
+        if (platform) {
+
+        }
 
         // Verificar si el token ha expirado
         if (expirationDateInSeconds < currentDateInSeconds) {
@@ -68,10 +72,8 @@ export class AuthService extends ComponentStore<session> {
 
   readonly getToken: Observable<string> = this.select((state: session) => state.token);
 
-  readonly getDataUser: Observable<any> = this.select((state: session) => {
-    const tokenPayload: any = jwtDecode(state.token);
-    const { dataUser } = tokenPayload;
-    return dataUser;
+  readonly getDataUser: Observable<Ijwt> = this.select((state: session) => {
+    return jwtDecode(state.token);
   });
 }
 

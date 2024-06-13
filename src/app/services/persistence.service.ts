@@ -19,7 +19,7 @@ export class Persistence {
   save(key: string, value: any) {
     const _key = this.Encript(key);
     const _value = this.Encript(JSON.stringify(value));
-     localStorage.setItem(_key, _value);
+    localStorage.setItem(_key, _value);
   }
 
   get(key: string) {
@@ -30,7 +30,6 @@ export class Persistence {
     }
     return JSON.parse(this.Crypto$.Decrypt(valueEncript));
   }
-
 
   delete = (key: string) => localStorage.removeItem(this.Encript(key));
 

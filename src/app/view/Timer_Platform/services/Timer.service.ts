@@ -1,48 +1,67 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { environment } from '../../../../environments/environment';
 import { FundoService } from '../../../services/Fundo.service';
 import { DataDeportista, requestSuccefull } from '../Interface/Datos-interfaces';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TimerService {
-  private eventSource!: EventSource;
+export class TimerService implements OnDestroy {
   private notificacionesSubject = new Subject<DataDeportista>();
-  notificaciones$: Observable<DataDeportista> =
-    this.notificacionesSubject.asObservable();
-  private url: string = `${environment.gatewayUrlFundo}cronometro/web/R0JJV4`;
-  constructor(private fundoService$: FundoService) {
-    this.setupSSE();
+  notificaciones$: Observable<DataDeportista> = this.notificacionesSubject.asObservable();
+  private eventSources: { [key: string]: EventSource } = {};
+
+  constructor(private fundoService$: FundoService) {}
+
+  ngOnDestroy() {
+    this.closeAllConnections();
   }
 
   getListAthletes(): Observable<DataDeportista[]> {
-    const endpoin = 'register/athletes';
-    return this.fundoService$.get(endpoin);
+    const endpoint = 'register/athletes';
+    return this.fundoService$.get(endpoint);
   }
 
-  private setupSSE():void {
-    this.eventSource = new EventSource(this.url);
+  setupSSE(url: string): void {
+    if (this.eventSources[url]) {
+      console.warn(`SSE connection for URL ${url} already exists.`);
+      return;
+    }
 
-    this.eventSource.addEventListener('message', (event: any) => {
+    const eventSource = new EventSource(url);
+
+    eventSource.addEventListener('message', (event: any) => {
       const data = JSON.parse(event.data);
       this.notificacionesSubject.next(data);
     });
 
-    this.eventSource.addEventListener('error', (error) => {
+    eventSource.addEventListener('error', (error) => {
       console.error('Error en la conexión SSE:', error);
     });
+
+    this.eventSources[url] = eventSource;
   }
 
-  closeConnection() {
-    if (this.eventSource) {
-      this.eventSource.close();
+  closeConnection(url: string): void {
+    if (this.eventSources[url]) {
+      this.eventSources[url].close();
+      delete this.eventSources[url];
+    } else {
+      console.warn(`No SSE connection found for URL ${url}.`);
     }
   }
 
+  closeAllConnections(): void {
+    for (const url in this.eventSources) {
+      if (this.eventSources.hasOwnProperty(url)) {
+        this.eventSources[url].close();
+      }
+    }
+    this.eventSources = {};
+  }
+
   postListCronometro(event: string, partidaId: string): Observable<requestSuccefull> {
-    const endpoin = `cronometro/movil/${event}/${partidaId}`;
-    return this.fundoService$.post(endpoin);
+    const endpoint = `cronometro/movil/${event}/${partidaId}`;
+    return this.fundoService$.post(endpoint);
   }
 }

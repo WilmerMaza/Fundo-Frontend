@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { jwtGuard } from './cord/guard/jwt.guard';
+import { platformGuard } from './cord/guard/platform.guard';
 
 
 export const routes: Routes = [
@@ -15,6 +16,7 @@ export const routes: Routes = [
     },
     {
         path: 'mobile',
+        canActivate:[jwtGuard,platformGuard],
         loadComponent: () =>
             import('./view/Movil_Platform/movil.component').then(
                 (c) => c.MovilComponent
@@ -22,6 +24,7 @@ export const routes: Routes = [
     },
     {
         path: 'Registration_Platform',
+        canActivate:[jwtGuard,platformGuard],
         loadComponent: () =>
             import('./view/Registration_Platform/registration-platform.component').then(
                 (c) => c.RegistrationPlatformComponent
@@ -42,11 +45,4 @@ export const routes: Routes = [
                 (c) => c.LoginComponent
             ),
     },
-    // {
-    //     path: 'Cronometro/Arbitrator',
-    //     loadComponent: () =>
-    //         import('./view/Timer_Platform/Timer-Arbitrator/timer_Arbitrator.component').then(
-    //             (c) => c.TimerArbitroComponent
-    //         ),
-    // },
 ];
