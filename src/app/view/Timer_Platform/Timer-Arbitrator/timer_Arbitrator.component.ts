@@ -13,7 +13,7 @@ import {
 import { TimerService } from '../services/Timer.service';
 
 @Component({
-  selector: 'app-timer2',
+  selector: 'app-timerarbitro',
   standalone: true,
   imports: [BoardComponent, Buton_boardComponent],
   template: `<section class="scoreboard">

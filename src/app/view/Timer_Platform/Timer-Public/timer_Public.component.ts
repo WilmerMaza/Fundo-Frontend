@@ -4,7 +4,7 @@ import { BoardComponent } from '../components/board/board.component';
 import { Athlete, DataDeportista } from '../Interface/Datos-interfaces';
 import { TimerService } from '../services/Timer.service';
 @Component({
-  selector: 'app-timer',
+  selector: 'app-timerpublic',
   standalone: true,
   imports: [BoardComponent],
   templateUrl: './timer_Public.component.html',
