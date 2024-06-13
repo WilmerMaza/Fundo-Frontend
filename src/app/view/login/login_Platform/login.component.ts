@@ -128,17 +128,19 @@ export class LoginComponent implements OnInit {
       if (tPlatform === 'Public') {
         this.router$.navigate([`${this.urlPlatform}`]);
       } else {
-        this.sessionService$.sessionLogin(dataRequest).subscribe(
-          () => {
+        this.sessionService$.sessionLogin(dataRequest).subscribe({
+          next: () => {
             this.router$.navigate([`${this.urlPlatform}`]);
           },
-          (loginError: Ierror) => {
+          error: (loginError: Ierror) => {
             Swal.fire({
               icon: 'error',
               title: "Oops...",
               text: `${loginError.statusText}  `,
             });
           }
+        }
+
         );
       }
     } else {
