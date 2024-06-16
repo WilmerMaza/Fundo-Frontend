@@ -36,7 +36,7 @@ export class FundoService {
       map((res) => {
         return res;
       }),
-      // eslint-disable-next-line @typescript-eslint/unbound-method
+
       catchError(this.handleError)
     );
   }

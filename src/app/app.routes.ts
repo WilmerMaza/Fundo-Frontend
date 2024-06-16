@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { jwtGuard } from './cord/guard/jwt.guard';
+import { platformGuard } from './cord/guard/platform.guard';
 
 
 export const routes: Routes = [
@@ -10,35 +12,37 @@ export const routes: Routes = [
     {
         path: 'Dashboard',
         loadComponent: () =>
-            import('./view/Dashboard/dashboard.component').then((c) => c.DashboardComponent)
+            import('./view/Dashboard_Platform/dashboard.component').then((c) => c.DashboardComponent)
     },
     {
-        path: 'Movil',
+        path: 'mobile',
+        canActivate:[jwtGuard,platformGuard],
         loadComponent: () =>
-            import('./view/Movil/movil.component').then(
+            import('./view/Movil_Platform/movil.component').then(
                 (c) => c.MovilComponent
             ),
     },
     {
         path: 'Registration_Platform',
+        canActivate:[jwtGuard,platformGuard],
         loadComponent: () =>
             import('./view/Registration_Platform/registration-platform.component').then(
                 (c) => c.RegistrationPlatformComponent
             ),
     },
     {
-        path: 'Timer',
-        loadComponent: () =>
-            import('./view/TimerComponen/Timer/timer.component').then(
-                (c) => c.TimerComponent  
-           ),
+        path: 'chronometer',
+        canActivate:[jwtGuard],
+        loadChildren: () =>
+            import('./view/Timer_Platform/cronometro.routes').then(
+                (c) => c.routes
+            ),
     },
-
     {
-        path: 'TimerPublic',
+        path: 'login',
         loadComponent: () =>
-            import('./view/TimerComponen/timer2/timer2.component').then(
-                (c) => c.Timer2Component
+            import('./view/login/login_Platform/login.component').then(
+                (c) => c.LoginComponent
             ),
     },
 ];

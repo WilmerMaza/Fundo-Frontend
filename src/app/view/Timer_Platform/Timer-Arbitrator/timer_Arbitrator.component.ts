@@ -1,17 +1,39 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { concatMap } from 'rxjs';
+import { Ijwt } from 'src/app/models/dataUserModel';
+import { AuthService } from 'src/app/services/auth-service.service';
+import { environment } from 'src/environments/environment';
+import { BoardComponent } from '../components/board/board.component';
+import { Buton_boardComponent } from '../components/buton_board/buton_board.component';
+import {
+  Athlete,
+  cronometro,
+  DataDeportista,
+} from '../Interface/Datos-interfaces';
 import { TimerService } from '../services/Timer.service';
-import { datos, cronometro } from '../Timer/Interface/Datos-interfaces';
-import { generalPais } from '../Timer/Interface/pais.util';
 
 @Component({
-  selector: 'app-timer2',
+  selector: 'app-timerarbitro',
   standalone: true,
-  imports: [],
-  templateUrl: './timer2.component.html',
-  styleUrls: ['./timer2.component.scss'],
+  imports: [BoardComponent, Buton_boardComponent],
+  template: `<section class="scoreboard">
+    <div class="scoreboard-container">
+      <app-board
+        class="scoreboard-board"
+        [Athlete]="dataAthlete"
+        [formattedTime]="formattedTime"
+      ></app-board>
+
+      <app-buton_board
+        class="scoreboard-button"
+        (eventButton)="sentCronometro($event)"
+      ></app-buton_board>
+    </div>
+  </section> `,
+  styleUrls: ['./timer_Arbitrator.component.scss'],
 })
-export class Timer2Component implements OnInit, OnDestroy {
-  public informacion: datos = {} as datos;
+export class TimerArbitroComponent implements OnInit, OnDestroy {
+  public dataAthlete: Athlete = {} as Athlete;
   public Cronometro: cronometro = {} as cronometro;
   private intervalId: any;
   private totalSeconds: number = 60;
@@ -19,7 +41,7 @@ export class Timer2Component implements OnInit, OnDestroy {
   public running: boolean = false;
   private pausedTime: number = 0;
 
-  constructor(private timerService$: TimerService) {}
+  constructor(private timerService$: TimerService, private authService$: AuthService) { }
 
   ngOnInit(): void {
     this.getInformation();
@@ -30,10 +52,25 @@ export class Timer2Component implements OnInit, OnDestroy {
   }
 
   getInformation(): void {
-    this.timerService$.getListAthletes().subscribe((athletes: datos[]) => {
-      this.informacion = athletes[1];
+    this.concatMapInfomation();
+  }
+
+  concatMapInfomation(): void {
+    this.authService$.getDataUser.pipe(
+      concatMap((data: Ijwt) => {
+        this.timerService$.setupSSE(`${environment.gatewayUrlFundo}cronometro/web/${data.hall}`);
+        return this.timerService$.notificaciones$;
+      })
+    ).subscribe({
+      next: ({ body }: DataDeportista) => {
+        this.dataAthlete = body;
+      },
+      error: error => {
+        console.error('Error:', error);
+      }
     });
   }
+
 
   startTimer(): void {
     if (!this.running && this.currentSeconds < this.totalSeconds) {
@@ -87,7 +124,8 @@ export class Timer2Component implements OnInit, OnDestroy {
     return `${formattedMin}:${formattedSec}`;
   }
 
-  sentCronometro(action: string, partidaId: string): void {
+  sentCronometro(action: string): void {
+    const partidaId = '123';
     this.timerService$.postListCronometro(action, partidaId).subscribe();
     switch (action) {
       case 'start':
@@ -109,9 +147,5 @@ export class Timer2Component implements OnInit, OnDestroy {
       default:
         break;
     }
-  }
-
-  generalPais(pais: string): string {
-    return generalPais(pais);
   }
 }

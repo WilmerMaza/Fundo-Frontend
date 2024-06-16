@@ -1,0 +1,55 @@
+<section class="buttons">
+
+  <hr class="yellow-line" />
+
+  <div class="grid-container">
+    <div class="grid-item">
+      <button class="start-button" (click)="sentEventButton('start')">
+        <strong>INICIAR </strong>
+      </button>
+    </div>
+    <div class="grid-item">
+      <button class="increase-time-button" (click)="sentEventButton('increase time')">
+        <strong>AUMENTAR TIEMPO </strong>
+      </button>
+    </div>
+  </div>
+  <!-- Small Buttons-->
+
+  <div class="grid-container-control">
+    <div class="grid-item__btn">
+      <button class="control-button" (click)="sentEventButton('pause')">
+        <span class="material-symbols-outlined">
+          pause_circle
+        </span>
+      </button>
+    </div>
+    <div class="grid-item__btn">
+      <button class="control-button" (click)="sentEventButton('stop')">
+        <span class="material-symbols-outlined">
+          play_circle
+        </span>
+      </button>
+    </div>
+    <div class="grid-item__btn">
+      <button class="control-button" (click)="sentEventButton('return')">
+        <span class="material-symbols-outlined">
+          cached
+        </span>
+      </button>
+    </div>
+    <div class="grid-item__btn">
+      <button class="control-button" (click)="sentEventButton('force')">
+        <img src="assets/img/Levantamiento.webp" class="action-image" alt="Force" />
+      </button>
+    </div>
+    <div class="grid-item__btn">
+      <button class="control-button" (click)="sentEventButton('weight')">
+        <img src="assets/img/Mancuernas.webp" class="action-image" alt="weight" />
+      </button>
+    </div>
+    <div class="grid-item__btn">
+      <button class="control-button"></button>
+    </div>
+  </div>
+</section>
