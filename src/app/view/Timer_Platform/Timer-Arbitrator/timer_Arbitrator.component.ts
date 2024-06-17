@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { concatMap } from 'rxjs';
 import { Ijwt } from 'src/app/models/dataUserModel';
 import { AuthService } from 'src/app/services/auth-service.service';
@@ -22,12 +23,13 @@ import { TimerService } from '../services/Timer.service';
         class="scoreboard-board"
         [Athlete]="dataAthlete"
         [formattedTime]="formattedTime"
+        [isPublic]="isPublic"
       ></app-board>
-
-      <app-buton_board
+       @if(!isPublic){
+       <app-buton_board
         class="scoreboard-button"
         (eventButton)="sentCronometro($event)"
-      ></app-buton_board>
+      ></app-buton_board>}
     </div>
   </section> `,
   styleUrls: ['./timer_Arbitrator.component.scss'],
@@ -40,8 +42,12 @@ export class TimerArbitroComponent implements OnInit, OnDestroy {
   public currentSeconds: number = 0;
   public running: boolean = false;
   private pausedTime: number = 0;
+  public isPublic: boolean = false;
+  private urlSSEBoard: string = `${environment.gatewayUrlFundo}cronometro/Board/`;
+  private urlSSERegister: string = `${environment.gatewayUrlFundo}cronometro/Register/`;
+  private hall: string = '';
 
-  constructor(private timerService$: TimerService, private authService$: AuthService) { }
+  constructor(private timerService$: TimerService, private authService$: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getInformation();
@@ -52,14 +58,47 @@ export class TimerArbitroComponent implements OnInit, OnDestroy {
   }
 
   getInformation(): void {
-    this.concatMapInfomation();
+    this.isPublic = this.route.snapshot.data['Public'];
+    if (this.isPublic) {
+      this.publicBoardInformation()
+      this.publicTime()
+    } else {
+      this.concatMapInfomation();
+    }
+
+  }
+
+
+  publicBoardInformation(): void {
+    this.route.queryParams.pipe(
+      concatMap(({ hall }: Params) => {
+        this.hall = hall;
+        this.timerService$.setupSSE(`${this.urlSSEBoard}${hall}`, 'board');
+        return this.timerService$.notificacionesBoard$;
+      })
+    ).subscribe({
+      next: ({ body }: DataDeportista) => {
+        this.dataAthlete = body;
+      },
+      error: error => {
+        console.error('Error:', error);
+      }
+    })
+  }
+
+  publicTime(): void {
+    this.timerService$.setupSSE(`${this.urlSSERegister}${this.hall}`, 'register');
+    this.timerService$.notificacionesRegister$.subscribe(({ action }: DataDeportista) => {
+      this.switchAction(action);
+    });
   }
 
   concatMapInfomation(): void {
     this.authService$.getDataUser.pipe(
-      concatMap((data: Ijwt) => {
-        this.timerService$.setupSSE(`${environment.gatewayUrlFundo}cronometro/web/${data.hall}`);
-        return this.timerService$.notificaciones$;
+      concatMap(({ hall }: Ijwt) => {
+        this.hall = hall;
+        this.timerService$.setupSSE(`${this.urlSSEBoard}${hall}`, 'board');
+        return this.timerService$.notificacionesBoard$;
       })
     ).subscribe({
       next: ({ body }: DataDeportista) => {
@@ -125,8 +164,12 @@ export class TimerArbitroComponent implements OnInit, OnDestroy {
   }
 
   sentCronometro(action: string): void {
-    const partidaId = '123';
-    this.timerService$.postListCronometro(action, partidaId).subscribe();
+    this.timerService$.postListCronometro(action, this.hall).subscribe();
+    this.switchAction(action);
+
+  }
+
+  switchAction(action: string): void {
     switch (action) {
       case 'start':
         this.startTimer();
@@ -149,3 +192,5 @@ export class TimerArbitroComponent implements OnInit, OnDestroy {
     }
   }
 }
+
+

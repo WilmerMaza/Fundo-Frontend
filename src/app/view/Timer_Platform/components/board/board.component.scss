@@ -27,22 +27,54 @@
       }
     }
 
-    .athlete-info {
-      .athlete-info__text {
-        font-weight: 700;
-        font-size: 3.65vw;
+    .Arbitrator-info {
+      width: 70%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      border-radius: 30px;
+      -webkit-box-shadow: 0px 0px 14px -1px rgb(66, 68, 90);
+      -moz-box-shadow: 0px 0px 14px -1px rgb(66, 68, 90);
+      box-shadow: 0px 0px 7px -1px rgb(66, 68, 90);
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 4.5vw;
+      .Arbitrator-info__text {
+        width: 33.3%;
+        height: 100%;
+        outline: 1px solid #cacaca;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+      }
 
-        text-align: center;
-        color: $color-yellow;
-
-        .athlete-info__first-name {
-          font-weight: 600;
-          font-size: 4vw;
-        }
+      .ArbitratorThird {
+        border-radius: 0px 30px 30px 0px;
+      }
+     
+      .ArbitratorFirst {
+        border-radius: 30px 0px 0px 30px;
       }
     }
   }
+  .athlete-info {
+    .athlete-info__text {
+      font-weight: 700;
+      font-size: 3.65vw;
 
+      text-align: center;
+      color: $color-yellow;
+
+      .athlete-info__first-name {
+        font-weight: 600;
+        font-size: 4vw;
+      }
+    }
+  }
   .details-section {
     position: relative;
     .details-grid {
@@ -56,7 +88,7 @@
       .details-grid__country-name,
       .details-grid__player-number {
         font-size: clamp(70px, 5.5vw, 100px);
-        color: $color-white;
+        color: $color-black;
         font-weight: 600;
         line-height: 100px;
         text-align: center;
@@ -75,6 +107,17 @@
           width: 200px;
           height: 100px;
         }
+      }
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .details-section {
+    .details-grid {
+      .details-grid__country-name,
+      .details-grid__player-number {
+        color: $color-white !important;
       }
     }
   }
