@@ -7,8 +7,12 @@ import { DataDeportista, requestSuccefull } from '../Interface/Datos-interfaces'
   providedIn: 'root',
 })
 export class TimerService implements OnDestroy {
-  private notificacionesSubject = new Subject<DataDeportista>();
-  notificaciones$: Observable<DataDeportista> = this.notificacionesSubject.asObservable();
+  private notificacionesBoardSubject = new Subject<DataDeportista>();
+  notificacionesBoard$: Observable<DataDeportista> = this.notificacionesBoardSubject.asObservable();
+
+  private notificacionesRegisterSubject = new Subject<DataDeportista>();
+  notificacionesRegister$: Observable<DataDeportista> = this.notificacionesRegisterSubject.asObservable();
+
   private eventSources: { [key: string]: EventSource } = {};
 
   constructor(private fundoService$: FundoService) {}
@@ -22,7 +26,7 @@ export class TimerService implements OnDestroy {
     return this.fundoService$.get(endpoint);
   }
 
-  setupSSE(url: string): void {
+  setupSSE(url: string, type: 'board' | 'register'): void {
     if (this.eventSources[url]) {
       console.warn(`SSE connection for URL ${url} already exists.`);
       return;
@@ -32,7 +36,11 @@ export class TimerService implements OnDestroy {
 
     eventSource.addEventListener('message', (event: any) => {
       const data = JSON.parse(event.data);
-      this.notificacionesSubject.next(data);
+      if (type === 'board') {
+        this.notificacionesBoardSubject.next(data);
+      } else {
+        this.notificacionesRegisterSubject.next(data);
+      }
     });
 
     eventSource.addEventListener('error', (error) => {
@@ -61,7 +69,7 @@ export class TimerService implements OnDestroy {
   }
 
   postListCronometro(event: string, partidaId: string): Observable<requestSuccefull> {
-    const endpoint = `cronometro/movil/${event}/${partidaId}`;
+    const endpoint = `cronometro/Register/${event}/${partidaId}`;
     return this.fundoService$.post(endpoint);
   }
 }

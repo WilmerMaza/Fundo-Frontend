@@ -126,7 +126,7 @@ export class LoginComponent implements OnInit {
       this.urlPlatform = `${dataRequest.platform}/${tPlatform}`;
 
       if (tPlatform === 'Public') {
-        this.router$.navigate([`${this.urlPlatform}`]);
+        this.router$.navigate([`${this.urlPlatform}`], { queryParams: { hall: data.hall } });
       } else {
         this.sessionService$.sessionLogin(dataRequest).subscribe({
           next: () => {

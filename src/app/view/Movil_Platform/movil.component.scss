@@ -1,0 +1,112 @@
+@use "@assets/colors.scss" as *;
+.content-movil {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .movil {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: clamp(100%, 40%, 50%);
+    width: clamp(100%, 40%, 50%);
+
+    .Athlete-info {
+      height: 20%;
+      width: 100%;
+
+      .content-Title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .select {
+          position: absolute;
+          right: 30px;
+
+          .check_circle {
+            color: $color-button-correct;
+          }
+          .cancel {
+            color: $color-button-Incorrect;
+          }
+        }
+        .Athlete-title {
+          font-family: "Inria Sans";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 25px;
+          line-height: 30px;
+
+          display: flex;
+          align-items: center;
+
+          color: $color-azul-title;
+        }
+      }
+
+      .Athlete-name {
+        font-family: "Inria Sans";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 7vw;
+        line-height: 30px;
+        display: flex;
+        align-items: center;
+        color: $color-black;
+      }
+    }
+
+    .Button {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      transition: transform 0.1s ease, box-shadow 0.1s ease,
+        background-color 0.1s ease;
+    }
+
+    .Button.pressed {
+      transform: scale(0.95); /* Reduce el tamaño del botón */
+      box-shadow: 0 5px #666; /* Sombra interna */
+      background-color: #388e3c; /* Cambia el color del botón */
+    }
+
+    .Correct {
+      background: $color-button-correct-gradien;
+      border-radius: 7.85263px 7.85263px 0px 0px;
+      .check {
+        background: $color-button-correct-gradien-inter;
+        border-radius: 7.85263px;
+        width: 95%;
+        height: 94%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color-button-correct;
+        font-size: clamp(75vw, 75vw, 20vw);
+      }
+    }
+
+    .Incorrect {
+      background: $color-button-Incorrect-gradien;
+      border-radius: 0px 0px 7.85263px 7.85263px;
+      .close {
+        background: $color-button-Incorrect-gradien-inter;
+        border-radius: 7.85263px;
+        width: 95%;
+        height: 94%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color-button-Incorrect;
+        font-size: clamp(75vw, 75vw, 20vw);
+      }
+    }
+  }
+}

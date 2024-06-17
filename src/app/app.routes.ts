@@ -16,7 +16,7 @@ export const routes: Routes = [
     },
     {
         path: 'mobile',
-        canActivate:[jwtGuard,platformGuard],
+        // canActivate:[jwtGuard,platformGuard],
         loadComponent: () =>
             import('./view/Movil_Platform/movil.component').then(
                 (c) => c.MovilComponent

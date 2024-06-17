@@ -8,17 +8,24 @@ export const routes: Routes = [
         path: 'Public',
         canActivate: [ignoreJwtGuard],
         loadComponent: () =>
-            import('./Timer-Public/timer_Public.component').then(
-                (c) => c.TimerComponent
+            import('./Timer-Arbitrator/timer_Arbitrator.component').then(
+                (c) => c.TimerArbitroComponent
             ),
+        data: {
+            Public: true
+        }
     },
 
     {
         path: 'Arbitrator',
         canActivate: [platformGuard],
+
         loadComponent: () =>
             import('./Timer-Arbitrator/timer_Arbitrator.component').then(
                 (c) => c.TimerArbitroComponent
             ),
+        data: {
+            Public: false
+        }
     },
 ];
