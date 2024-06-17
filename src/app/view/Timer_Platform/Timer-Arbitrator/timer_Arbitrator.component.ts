@@ -87,7 +87,7 @@ export class TimerArbitroComponent implements OnInit, OnDestroy {
   }
 
   publicTime(): void {
-    this.timerService$.setupSSE(`${this.urlSSERegister}${this.hall}`,'register');
+    this.timerService$.setupSSE(`${this.urlSSERegister}${this.hall}`, 'register');
     this.timerService$.notificacionesRegister$.subscribe(({ action }: DataDeportista) => {
       this.switchAction(action);
     });
@@ -169,7 +169,7 @@ export class TimerArbitroComponent implements OnInit, OnDestroy {
 
   }
 
-  switchAction(action: string) {
+  switchAction(action: string): void {
     switch (action) {
       case 'start':
         this.startTimer();
