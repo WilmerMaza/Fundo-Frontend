@@ -1,0 +1,109 @@
+@use "@assets/colors.scss" as *;
+
+.content-levatamiento {
+  height: 100%;
+  padding: 6% 15%;
+  .title_Card_hall {
+    font-family: "Inria Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.5em;
+    line-height: 60px;
+    color: $color-azul-title;
+    text-align: center;
+    margin-bottom: 8%;
+  }
+  .content_expansion {
+    .example-headers-align {
+      .mat-expansion-panel {
+        .mat-expansion {
+          background: $color-azul-title;
+          .mat-panel-title {
+            flex-basis: auto;
+            width: 90%;
+            color: $color-white;
+          }
+          .mat-panel-description {
+            .icon {
+              color: $color-white;
+            }
+          }
+        }
+        .content-stepper {
+          width: 100%;
+
+          .content-juez {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+
+        ::ng-deep .mat-expansion-panel-body {
+          padding: 15px 24px 16px;
+          .content-juez,
+          .content-form {
+            width: 100%;
+            display: flex;
+            gap: 20px;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            .input {
+              width: 45%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .button-create {
+    background: $color-white;
+    border: 3px solid $color-azul-title;
+    border-radius: 5px;
+    font-family: "Inria Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1em;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+    width: 283px;
+    height: 55px;
+    margin: auto;
+    margin-top: 6%;
+    color: $color-azul-title;
+  }
+}
+
+::ng-deep.btn.btn-success {
+  background: $color-white;
+  border: 3px solid $color-azul-title;
+  border-radius: 5px;
+  font-family: "Inria Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1em;
+  line-height: 36px;
+  display: flex;
+  align-items: center;
+  width: 283px;
+  height: 55px;
+  margin: auto;
+  margin-top: 6%;
+  color: $color-azul-title;
+}
+
+::ng-deep.sweetalertText {
+  font-family: "Inria Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 65px;
+  line-height: 96px;
+  text-align: center;
+  color: $color-black;
+}

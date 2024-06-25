@@ -1,0 +1,7 @@
+<section class="content-select">
+  @for (item of dashboards; track item) {
+  <app-card class="card-dash pressed" [dataDashboard]="item" (click)="createHall(item.board)"></app-card>
+  } @empty {
+  Empty dash
+  }
+</section>

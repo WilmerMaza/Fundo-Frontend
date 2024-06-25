@@ -1,0 +1,15 @@
+.content-select {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 15px;
+  justify-items: center;
+  .card-dash {
+    width: 356px;
+    height: 366px;
+  }
+
+  .card-dash:hover {
+    transform: scale(0.95); /* Reduce el tamaño del botón */
+    box-shadow: 0 5px #666; /* Sombra interna */
+  }
+}

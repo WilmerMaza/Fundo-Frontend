@@ -1,0 +1,62 @@
+@use "@assets/colors.scss" as *;
+.content-link {
+  padding: 3% 8%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .content-title {
+    font-family: "Inria Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.5em;
+    line-height: 60px;
+    color: $color-azul-title;
+    text-align: center;
+    margin-bottom: 8%;
+    .codehall {
+      color: $color-black;
+    }
+  }
+  .content-name {
+    display: flex;
+    height: 5vw;
+    background: $color-white;
+    border: 3px solid $color-azul-title;
+    border-radius: 5px 5px 0px 0px;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2px;
+    .platform-name {
+      width: 30%;
+      text-align: justify;
+      color: $color-azul-title;
+      padding-left: 50px;
+    }
+    .platform-link {
+      width: 70%;
+      text-align: center;
+      background: #d9d9d9;
+      border-radius: 5px;
+      height: 27px;
+      display: flex;
+      margin-right: 80px;
+      justify-content: center;
+      align-items: center;
+      .platform-link-name {
+        text-decoration-line: none;
+        color: $color-black;
+      }
+    }
+  }
+  .btn-link {
+    color: $color-white;
+    background: $color-azul-title;
+    width: 30%;
+    margin: auto;
+    margin-top: 12%;
+    height: 55px;
+    font-family: "Inria Sans";
+    font-style: normal;
+    font-size: 1.3em;
+  }
+}

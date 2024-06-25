@@ -123,7 +123,7 @@ export class LoginComponent implements OnInit {
       // data.Password = this.cryptoService$
       //   .Encript(this.loginForm.get('password')?.value)
       //   .toString();
-      this.urlPlatform = `${dataRequest.platform}/${tPlatform}`;
+      this.urlPlatform = dataRequest.platform === tPlatform ? `${dataRequest.platform}` : `${dataRequest.platform}/${tPlatform}`;
 
       if (tPlatform === 'Public') {
         this.router$.navigate([`${this.urlPlatform}`], { queryParams: { hall: data.hall } });

@@ -51,7 +51,7 @@ import { arbitrator } from './../../../../utils/const';
     <div class="athlete-info">
       <div class="athlete-info__text">
         <h1 class="athlete-info__last-name">
-          {{ Athlete().LastName.toUpperCase() }}
+          {{toUpperCaseValid(Athlete().LastName)}}
         </h1>
         <h2 class="athlete-info__first-name">{{ Athlete().Name }}</h2>
       </div>

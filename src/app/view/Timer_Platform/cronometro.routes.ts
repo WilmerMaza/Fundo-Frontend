@@ -15,7 +15,6 @@ export const routes: Routes = [
             Public: true
         }
     },
-
     {
         path: 'Arbitrator',
         canActivate: [platformGuard],

@@ -1,0 +1,31 @@
+@use "@assets/colors.scss" as *;
+.contend-card {
+  background: $color-azul-title;
+  height: 100%;
+
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px 10px 0px 0px;
+
+  .title-card {
+    display: flex;
+    justify-content: center;
+    .mat-card-title {
+      font-family: "Inria Sans";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 26px;
+      line-height: 42px;
+      color: $color-white;
+    }
+  }
+  .mat-card-content {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    img {
+      width: 100%;
+      height: auto;
+      filter: grayscale(0%) brightness(400%);
+    }
+  }
+}
