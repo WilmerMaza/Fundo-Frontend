@@ -1,0 +1,148 @@
+<section class="content-levatamiento">
+    <div class="title_Card_hall">
+        <h2>Creación de sala</h2>
+    </div>
+
+    <div class="content_expansion">
+        <mat-accordion class="example-headers-align">
+            <mat-expansion-panel [expanded]="step() === 0" (opened)="setStep(0)" hideToggle class="mat-expansion-panel">
+                <mat-expansion-panel-header class="mat-expansion">
+                    <mat-panel-title class="mat-panel-title"> Plataforma de Registro</mat-panel-title>
+                    <mat-panel-description class="mat-panel-description">
+                        <mat-icon class="icon">account_circle</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <form [formGroup]="formRegister" class="content-form">
+                    <mat-form-field class="input">
+                        <mat-label>Nombre completo</mat-label>
+                        <input matInput formControlName="name" />
+                    </mat-form-field>
+
+                    <mat-form-field class="input">
+                        <mat-label>N.identificación</mat-label>
+                        <input matInput formControlName="document" />
+                    </mat-form-field>
+                </form>
+
+
+                <mat-action-row>
+                    <button mat-button color="primary" (click)="nextStep()">Next</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="step() === 1" (opened)="setStep(1)" hideToggle>
+                <mat-expansion-panel-header class="mat-expansion">
+                    <mat-panel-title class="mat-panel-title"> Plataforma Movile (jueces)</mat-panel-title>
+                    <mat-panel-description class="mat-panel-description">
+                        <mat-icon class="icon">mobile_friendly</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div class="content-stepper">
+                    <mat-stepper #stepper>
+                        <mat-step [stepControl]="formJuezUno" errorMessage="required.">
+                            <form [formGroup]="formJuezUno">
+                                <ng-template matStepLabel>Juez 1</ng-template>
+                                <div class="content-juez">
+
+                                    <mat-form-field class="input">
+                                        <mat-label>Nombre completo</mat-label>
+                                        <input matInput formControlName="name" />
+                                    </mat-form-field>
+
+                                    <mat-form-field class="input">
+                                        <mat-label>N.identificación</mat-label>
+                                        <input matInput formControlName="document" />
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div>
+                                    <button mat-button matStepperNext>Next</button>
+                                </div>
+                            </form>
+                        </mat-step>
+                        <mat-step [stepControl]="formJuezDos" errorMessage="required.">
+                            <form [formGroup]="formJuezDos">
+                                <ng-template matStepLabel>Juez 2</ng-template>
+                                <div class="content-juez">
+
+                                    <mat-form-field class="input">
+                                        <mat-label>Nombre completo</mat-label>
+                                        <input matInput formControlName="name" />
+                                    </mat-form-field>
+
+                                    <mat-form-field class="input">
+                                        <mat-label>N.identificación</mat-label>
+                                        <input matInput formControlName="document" />
+                                    </mat-form-field>
+
+                                </div>
+                                <div>
+                                    <button mat-button matStepperPrevious>Back</button>
+                                    <button mat-button matStepperNext>Next</button>
+                                </div>
+                            </form>
+                        </mat-step>
+                        <mat-step [stepControl]="formJuezTres" errorMessage="required.">
+                            <form [formGroup]="formJuezTres">
+                                <ng-template matStepLabel>Juez 3</ng-template>
+                                <div class="content-juez">
+
+                                    <mat-form-field class="input">
+                                        <mat-label>Nombre completo</mat-label>
+                                        <input matInput formControlName="name" />
+                                    </mat-form-field>
+
+                                    <mat-form-field class="input">
+                                        <mat-label>N.identificación</mat-label>
+                                        <input matInput formControlName="document" />
+                                    </mat-form-field>
+
+                                </div>
+                                <div>
+                                    <button mat-button matStepperPrevious>Back</button>
+                                    <button mat-button (click)="stepper.reset()">Reset</button>
+                                </div>
+                            </form>
+                        </mat-step>
+                    </mat-stepper>
+                </div>
+
+
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                    <button mat-button color="primary" (click)="nextStep()">Next</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="step() === 2" (opened)="setStep(2)" hideToggle>
+                <mat-expansion-panel-header class="mat-expansion">
+                    <mat-panel-title class="mat-panel-title">Plataforma Cronometro</mat-panel-title>
+                    <mat-panel-description class="mat-panel-description">
+                        <mat-icon class="icon">alarm</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <form [formGroup]="formCronometro" class="content-form">
+                    <mat-form-field class="input">
+                        <mat-label>Nombre completo</mat-label>
+                        <input matInput formControlName="name" />
+                    </mat-form-field>
+
+                    <mat-form-field class="input">
+                        <mat-label>N.identificación</mat-label>
+                        <input matInput formControlName="document" />
+                    </mat-form-field>
+                </form>
+
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                    <button mat-button color="primary" (click)="nextStep()">End</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </div>
+    <button mat-stroked-button class="button-create" (click)="createHall()">Crear sala</button>
+</section>

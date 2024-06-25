@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { concatMap } from 'rxjs';
+import { Ijwt } from 'src/app/models/dataUserModel';
+import { AuthService } from 'src/app/services/auth-service.service';
+import { Validators } from 'src/app/utils/Validators';
+import { environment } from 'src/environments/environment';
+import { Athlete, DataDeportista } from '../Timer_Platform/Interface/Datos-interfaces';
+import { MovilService } from './services/movil.service';
 
 @Component({
   selector: 'app-movil',
@@ -18,10 +25,8 @@ import { Component } from '@angular/core';
           </div>
          
         </div>
-        <p class="Athlete-name">Meza Gomez Alberto jose</p>
+        <p class="Athlete-name">{{validInformation(dataAthlete.LastName) +' '+ validInformation(dataAthlete.Name) }}</p>
       </div>
-
-    
 
       <button
         class="Button Correct"
@@ -41,8 +46,38 @@ import { Component } from '@angular/core';
   </section>`,
   styleUrl: './movil.component.scss',
 })
-export class MovilComponent {
+export class MovilComponent implements OnInit {
   selectedButton: string | null = null;
+  private hall: string = '';
+  private urlSSEBoard: string = `${environment.gatewayUrlFundo}cronometro/Register/`;
+  public dataAthlete: Athlete = {} as Athlete;
+  constructor(private movilService$: MovilService, private authService$: AuthService) { }
+
+  ngOnInit(): void {
+    this.concatMapInfomation();
+  }
+
+  concatMapInfomation(): void {
+    this.authService$.getDataUser.pipe(
+      concatMap(({ hall }: Ijwt) => {
+        this.hall = hall;
+        this.movilService$.setupSSE(`${this.urlSSEBoard}${hall}`);
+        return this.movilService$.notificaciones$;
+      })
+    ).subscribe({
+      next: ({ body }: DataDeportista) => {
+        this.dataAthlete = body;
+      },
+      error: error => {
+        console.error('Error:', error);
+      }
+    });
+  }
+
+  validInformation = (value: string): string => Validators.isNullOrUndefined(value) ? '' : value
+
+
+
   selectButton(button: string): void {
     this.selectedButton = button;
   }

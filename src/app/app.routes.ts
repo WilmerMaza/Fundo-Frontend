@@ -6,8 +6,13 @@ import { platformGuard } from './cord/guard/platform.guard';
 export const routes: Routes = [
     {
         path: '',
-        loadComponent: () =>
-            import('./view/home/home.component').then((c) => c.HomeComponent)
+        redirectTo: 'board',
+        pathMatch: 'full',
+    },
+    {
+        path: 'board',
+        loadChildren: () =>
+            import('./view/home/board.routes').then((c) => c.board)
     },
     {
         path: 'Dashboard',
@@ -16,7 +21,7 @@ export const routes: Routes = [
     },
     {
         path: 'mobile',
-        // canActivate:[jwtGuard,platformGuard],
+        canActivate: [jwtGuard, platformGuard],
         loadComponent: () =>
             import('./view/Movil_Platform/movil.component').then(
                 (c) => c.MovilComponent
@@ -24,7 +29,7 @@ export const routes: Routes = [
     },
     {
         path: 'Registration_Platform',
-        canActivate:[jwtGuard,platformGuard],
+        canActivate: [jwtGuard, platformGuard],
         loadComponent: () =>
             import('./view/Registration_Platform/registration-platform.component').then(
                 (c) => c.RegistrationPlatformComponent
@@ -32,7 +37,7 @@ export const routes: Routes = [
     },
     {
         path: 'chronometer',
-        canActivate:[jwtGuard],
+        canActivate: [jwtGuard],
         loadChildren: () =>
             import('./view/Timer_Platform/cronometro.routes').then(
                 (c) => c.routes

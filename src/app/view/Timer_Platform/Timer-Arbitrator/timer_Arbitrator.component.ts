@@ -164,7 +164,7 @@ export class TimerArbitroComponent implements OnInit, OnDestroy {
   }
 
   sentCronometro(action: string): void {
-    this.timerService$.postListCronometro(action, this.hall).subscribe();
+    this.timerService$.postListCronometro(action, this.hall, this.dataAthlete).subscribe();
     this.switchAction(action);
 
   }

@@ -68,8 +68,8 @@ export class TimerService implements OnDestroy {
     this.eventSources = {};
   }
 
-  postListCronometro(event: string, partidaId: string): Observable<requestSuccefull> {
+  postListCronometro(event: string, partidaId: string,body:any): Observable<requestSuccefull> {
     const endpoint = `cronometro/Register/${event}/${partidaId}`;
-    return this.fundoService$.post(endpoint);
+    return this.fundoService$.post(endpoint,body);
   }
 }
