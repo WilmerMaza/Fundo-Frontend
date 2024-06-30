@@ -9,7 +9,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CryptoService } from 'src/app/services/crypto.service';
 import { Ierror } from 'src/app/utils/error';
 import Swal from 'sweetalert2';
-import { DefaulPlatform } from '../model/defaulPlatform';
+import { DefaulPlatform } from '../model/DefaulPlatform';
 import { LoginPlatformFormModel } from '../model/LoginFormModel';
 import { SessionService } from '../services/session.service';
 import {
@@ -125,6 +125,8 @@ export class LoginComponent implements OnInit {
       //   .toString();
       this.urlPlatform = dataRequest.platform === tPlatform ? `${dataRequest.platform}` : `${dataRequest.platform}/${tPlatform}`;
 
+
+
       if (tPlatform === 'Public') {
         this.router$.navigate([`${this.urlPlatform}`], { queryParams: { hall: data.hall } });
       } else {
@@ -166,7 +168,7 @@ export class LoginComponent implements OnInit {
     const platformLogic: { [key: string]: () => boolean } = {
       'chronometer': () => !chronometerList.some((item: DefaulPlatform) => type.includes(item.value)),
       'mobile': () => false,
-      'Registration_Platform': () => false,
+      'RegistrationPlatform': () => false,
     };
 
     return platformLogic[params] ? platformLogic[params]() : true;
@@ -175,7 +177,7 @@ export class LoginComponent implements OnInit {
   selectPlatform(select: string): void {
     const platformActions: { [key: string]: () => void } = {
       'mobile': () => { this.isplatformTypeSelect = false; },
-      'Registration_Platform': () => { this.isplatformTypeSelect = false; },
+      'RegistrationPlatform': () => { this.isplatformTypeSelect = false; },
       // Agrega otras plataformas aquí según sea necesario
     };
 

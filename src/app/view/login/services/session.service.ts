@@ -3,7 +3,7 @@ import { Observable, tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { FundoService } from 'src/app/services/Fundo.service';
 import { Persistence } from 'src/app/services/persistence.service';
-import { RequestLogin, RequestSuccessfull } from '../model/defaulPlatform';
+import { RequestLogin, RequestSuccessfull } from '../model/DefaulPlatform';
 
 @Injectable({
   providedIn: 'root'

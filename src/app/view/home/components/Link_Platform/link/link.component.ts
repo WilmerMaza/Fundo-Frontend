@@ -45,8 +45,8 @@ export class LinkComponent implements OnInit {
     this.platformList = [
       {
         name: 'Pl. de Registro',
-        link: `${this.domainName}/Registration_Platform`,
-        linkClick: 'Registration_Platform',
+        link: `${this.domainName}/RegistrationPlatform`,
+        linkClick: 'RegistrationPlatform',
       },
       {
         name: 'Pl. Mobile',

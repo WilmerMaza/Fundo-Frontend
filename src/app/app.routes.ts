@@ -28,10 +28,10 @@ export const routes: Routes = [
             ),
     },
     {
-        path: 'Registration_Platform',
+        path: 'RegistrationPlatform',
         canActivate: [jwtGuard, platformGuard],
         loadComponent: () =>
-            import('./view/Registration_Platform/registration-platform.component').then(
+            import('./view/Registration_Platform/components/registration/registration-platform.component').then(
                 (c) => c.RegistrationPlatformComponent
             ),
     },

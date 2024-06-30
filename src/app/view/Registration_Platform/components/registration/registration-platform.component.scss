@@ -1,0 +1,52 @@
+@use "@assets/colors.scss" as *;
+.content-register {
+  .register-card {
+    height: 100vh;
+    width: 100%;
+    padding: 2%;
+    .register-card-header {
+      box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.25),
+        0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      margin-bottom: 20px;
+      height: 10%;
+      .mat-mdc-card-header-text {
+        display: none;
+      }
+      .card-header-button {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 15px;
+        .registrar-button {
+          background: $color-azul-title;
+          color: $color-white;
+        }
+      }
+    }
+    .stepper-content {
+      height: auto;
+
+      .card-header-stepper {
+        width: 100%;
+        height: 100%;
+        .card-header-button-close {
+          position: relative;
+          height: 50px;
+          .button-close {
+            position: absolute;
+            right: 0;
+          }
+        }
+      }
+    }
+    .register-card-content {
+      box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.25),
+        0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      height: 100%;
+    }
+  }
+}

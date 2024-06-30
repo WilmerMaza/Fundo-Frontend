@@ -1,0 +1,35 @@
+@use "@assets/colors.scss" as *;
+.content-stepper {
+  height: auto;
+  width: 100%;
+
+  .content-controls {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    .input {
+      width: 45%;
+      input.example-right-align::-webkit-outer-spin-button,
+      input.example-right-align::-webkit-inner-spin-button {
+        display: none;
+      }
+    }
+  }
+
+  .content-action-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    margin: 80px 0;
+    .registrar-button {
+      background: $color-azul-title;
+      color: $color-white;
+    }
+  }
+}
