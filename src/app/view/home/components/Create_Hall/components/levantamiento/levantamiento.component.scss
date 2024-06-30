@@ -54,6 +54,10 @@
             align-items: center;
             .input {
               width: 45%;
+              input.example-right-align::-webkit-outer-spin-button,
+              input.example-right-align::-webkit-inner-spin-button {
+                display: none;
+              }
             }
           }
         }
@@ -80,7 +84,8 @@
   }
 }
 
-::ng-deep.btn.btn-success {
+::ng-deep.btn.btn-success,
+::ng-deep .swal2-confirm.btn.btn-success {
   background: $color-white;
   border: 3px solid $color-azul-title;
   border-radius: 5px;

@@ -1,0 +1,31 @@
+<section class="content-register">
+  <mat-card class="register-card" appearance="outlined">
+    <mat-card-header class="register-card-header" [ngClass]="{'stepper-content': open}">
+      @if(!open){
+      <div class="card-header-button">
+        <button mat-flat-button disabled>Terminar registro</button>
+        <button mat-flat-button class="registrar-button" (click)="openRegister()">Registrar deportistas</button>
+      </div>
+      }
+
+      @if(open){
+      <div class="card-header-stepper">
+        <div class="card-header-button-close">
+          <button mat-icon-button class="button-close" aria-label="Example icon button with a vertical three dot icon"
+            (click)="openRegister()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <app-stepper [stepValue]="dataSteper" (stepsExportValue)="registerDeportista($event)"></app-stepper>
+      </div>
+      }
+
+    </mat-card-header>
+
+    <mat-card-content class="register-card-content">
+
+    </mat-card-content>
+  </mat-card>
+
+
+</section>

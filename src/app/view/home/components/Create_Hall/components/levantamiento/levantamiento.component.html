@@ -16,11 +16,27 @@
                     <mat-form-field class="input">
                         <mat-label>Nombre completo</mat-label>
                         <input matInput formControlName="name" />
+                        <mat-error>
+                            @if
+                            (formRegister.get('name')?.hasError('required'))
+                            {
+                            <ng-container> *Campo requerido </ng-container>} @if
+                            (formRegister.get('name')?.hasError('pattern'))
+                            { <ng-container> *Campo invalido </ng-container>}
+                        </mat-error>
                     </mat-form-field>
 
                     <mat-form-field class="input">
                         <mat-label>N.identificación</mat-label>
-                        <input matInput formControlName="document" />
+                        <input matInput formControlName="document" type="number" class="example-right-align" />
+                        <mat-error>
+                            @if
+                            (formRegister.get('document')?.hasError('required'))
+                            {
+                            <ng-container> *Campo requerido </ng-container>} @if
+                            (formRegister.get('document')?.hasError('pattern'))
+                            { <ng-container> *Campo invalido </ng-container>}
+                        </mat-error>
                     </mat-form-field>
                 </form>
 
@@ -39,74 +55,8 @@
                 </mat-expansion-panel-header>
 
                 <div class="content-stepper">
-                    <mat-stepper #stepper>
-                        <mat-step [stepControl]="formJuezUno" errorMessage="required.">
-                            <form [formGroup]="formJuezUno">
-                                <ng-template matStepLabel>Juez 1</ng-template>
-                                <div class="content-juez">
-
-                                    <mat-form-field class="input">
-                                        <mat-label>Nombre completo</mat-label>
-                                        <input matInput formControlName="name" />
-                                    </mat-form-field>
-
-                                    <mat-form-field class="input">
-                                        <mat-label>N.identificación</mat-label>
-                                        <input matInput formControlName="document" />
-                                    </mat-form-field>
-
-                                </div>
-
-                                <div>
-                                    <button mat-button matStepperNext>Next</button>
-                                </div>
-                            </form>
-                        </mat-step>
-                        <mat-step [stepControl]="formJuezDos" errorMessage="required.">
-                            <form [formGroup]="formJuezDos">
-                                <ng-template matStepLabel>Juez 2</ng-template>
-                                <div class="content-juez">
-
-                                    <mat-form-field class="input">
-                                        <mat-label>Nombre completo</mat-label>
-                                        <input matInput formControlName="name" />
-                                    </mat-form-field>
-
-                                    <mat-form-field class="input">
-                                        <mat-label>N.identificación</mat-label>
-                                        <input matInput formControlName="document" />
-                                    </mat-form-field>
-
-                                </div>
-                                <div>
-                                    <button mat-button matStepperPrevious>Back</button>
-                                    <button mat-button matStepperNext>Next</button>
-                                </div>
-                            </form>
-                        </mat-step>
-                        <mat-step [stepControl]="formJuezTres" errorMessage="required.">
-                            <form [formGroup]="formJuezTres">
-                                <ng-template matStepLabel>Juez 3</ng-template>
-                                <div class="content-juez">
-
-                                    <mat-form-field class="input">
-                                        <mat-label>Nombre completo</mat-label>
-                                        <input matInput formControlName="name" />
-                                    </mat-form-field>
-
-                                    <mat-form-field class="input">
-                                        <mat-label>N.identificación</mat-label>
-                                        <input matInput formControlName="document" />
-                                    </mat-form-field>
-
-                                </div>
-                                <div>
-                                    <button mat-button matStepperPrevious>Back</button>
-                                    <button mat-button (click)="stepper.reset()">Reset</button>
-                                </div>
-                            </form>
-                        </mat-step>
-                    </mat-stepper>
+                    <app-stepper [stepValue]="stepperData" (stepsExportValue)="steppExportData($event)"
+                        [actionStepper]="eventStep"></app-stepper>
                 </div>
 
 
@@ -128,11 +78,27 @@
                     <mat-form-field class="input">
                         <mat-label>Nombre completo</mat-label>
                         <input matInput formControlName="name" />
+                        <mat-error>
+                            @if
+                            (formCronometro.get('name')?.hasError('required'))
+                            {
+                            <ng-container> *Campo requerido </ng-container>} @if
+                            (formCronometro.get('name')?.hasError('pattern'))
+                            { <ng-container> *Campo invalido </ng-container>}
+                        </mat-error>
                     </mat-form-field>
 
                     <mat-form-field class="input">
                         <mat-label>N.identificación</mat-label>
-                        <input matInput formControlName="document" />
+                        <input matInput formControlName="document" type="number" class="example-right-align" />
+                        <mat-error>
+                            @if
+                            (formCronometro.get('document')?.hasError('required'))
+                            {
+                            <ng-container> *Campo requerido </ng-container>} @if
+                            (formCronometro.get('document')?.hasError('pattern'))
+                            { <ng-container> *Campo invalido </ng-container>}
+                        </mat-error>
                     </mat-form-field>
                 </form>
 
@@ -144,5 +110,5 @@
         </mat-accordion>
 
     </div>
-    <button mat-stroked-button class="button-create" (click)="createHall()">Crear sala</button>
+    <button mat-stroked-button class="button-create" (click)="sentEventSteper('submit')">Crear sala</button>
 </section>

@@ -1,0 +1,123 @@
+<section class="content-stepper">
+    <mat-stepper #stepper>
+        @for (item of stepValue(); track item ; let indexF = $index ; let last = $last) {
+        @if(getStepFormGroup(indexF) ){
+        <mat-step [stepControl]="getStepFormGroup(indexF)" errorMessage="{{ item.error }}">
+            <form [formGroup]="getStepFormGroup(indexF)">
+                <ng-template matStepLabel>{{ item.label }}</ng-template>
+                <div class="content-controls">
+                    @for (control of stepValue()[indexF].controle; track control; let
+                    indexC = $index ) {
+                    @if (control.type === 'text') {
+                    <mat-form-field class="input">
+                        <mat-label>{{ control.label }}</mat-label>
+                        <input matInput placeholder="{{ control.placeholder }}"
+                            formControlName="{{ control.controlName }}" required />
+                        <mat-error>
+                            @if
+                            (getStepFormGroup(indexF).get(control.controlName)?.hasError('required'))
+                            {
+                            <ng-container> *Campo requerido </ng-container>} @if
+                            (getStepFormGroup(indexF).get(control.controlName)?.hasError('pattern'))
+                            { <ng-container> *Campo invalido </ng-container>}
+                        </mat-error> </mat-form-field>} @else if (control.type === 'picker') {
+                    <mat-form-field class="input">
+                        <mat-label>{{ control.label }}</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="{{ control.controlName }}"
+                            placeholder="{{ control.placeholder }}">
+
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+
+                        <mat-error>
+                            @if
+                            (getStepFormGroup(indexF).get(control.controlName)?.hasError('required'))
+                            {
+                            <ng-container> *Campo requerido </ng-container>} @if
+                            (getStepFormGroup(indexF).get(control.controlName)?.hasError('pattern'))
+                            { <ng-container> *Campo invalido </ng-container>}
+                        </mat-error>
+                    </mat-form-field>
+
+                    }@else if (control.type === 'select') {
+
+                    <mat-form-field class="input">
+
+                        <mat-label>{{control.label}}</mat-label>
+
+                        <mat-select formControlName="{{control.controlName}}" placeholder="{{ control.placeholder }}">
+                            <mat-option>-- None --</mat-option>
+                            @for (item of control.list; track $index) {
+                            <mat-option [value]="item.value">{{item.name}}</mat-option>
+                            }
+
+                        </mat-select>
+
+                        <mat-error>
+                            @if
+                            (getStepFormGroup(indexF).get(control.controlName)?.hasError('required'))
+                            {
+                            <ng-container> *Campo requerido </ng-container>} @if
+                            (getStepFormGroup(indexF).get(control.controlName)?.hasError('pattern'))
+                            { <ng-container> *Campo invalido </ng-container>}
+                        </mat-error>
+                    </mat-form-field>
+                    }@else if (control.type === 'number') {
+
+                    <mat-form-field class="input">
+                        <mat-label>{{control.label}}</mat-label>
+                        <input matInput type="number" class="example-right-align"
+                            formControlName="{{control.controlName}}" placeholder="{{ control.placeholder }}" />
+
+                        @if (control.suffix) {
+                        <span matTextSuffix>{{control.suffix}}</span>
+                        }
+                        <mat-error>
+                            @if
+                            (getStepFormGroup(indexF).get(control.controlName)?.hasError('required'))
+                            {
+                            <ng-container> *Campo requerido </ng-container>} @if
+                            (getStepFormGroup(indexF).get(control.controlName)?.hasError('pattern'))
+                            { <ng-container> *Campo invalido </ng-container>}
+                        </mat-error>
+                    </mat-form-field>
+                    }
+                    }
+                </div>
+
+                @if (last) {
+
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                </div>
+                }@else {
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+
+                }
+
+            </form>
+        </mat-step>
+        } @else{
+        <mat-step>
+            <ng-template matStepLabel>{{ item.label }}</ng-template>
+
+            <div class="content-action-button">
+                <p>{{ item.message }}</p>
+                @if(item.action.type === 'button'){
+                <button mat-flat-button class="registrar-button" (click)="validAction(item.action.action)">
+                    {{ item.action.label }}
+                </button>
+                }
+            </div>
+
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+        } }
+    </mat-stepper>
+</section>

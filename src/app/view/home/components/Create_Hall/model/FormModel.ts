@@ -15,25 +15,4 @@ export class FormModel {
       document: new FormControl(null, [Validators.required]),
     })
   }
-
-  formMobileUno(): FormGroup {
-    return new FormGroup({
-      name: new FormControl(null, Validators.required),
-      document: new FormControl(null, [Validators.required]),
-    })
-  }
-
-  formMobileDos(): FormGroup {
-    return new FormGroup({
-      name: new FormControl(null, Validators.required),
-      documento: new FormControl(null, [Validators.required]),
-    })
-  }
-
-  formMobileTres(): FormGroup {
-    return new FormGroup({
-      name: new FormControl(null, Validators.required),
-      documento: new FormControl(null, [Validators.required]),
-    })
-  }
 }

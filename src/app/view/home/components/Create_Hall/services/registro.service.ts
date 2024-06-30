@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FundoService } from 'src/app/services/Fundo.service';
 import { requestSuccefull } from 'src/app/view/Timer_Platform/Interface/Datos-interfaces';
-import { RequestHall } from '../model/requesHall';
+import { RequestHall } from '../../../interfaces/requesHall';
 
 @Injectable({
   providedIn: 'root'

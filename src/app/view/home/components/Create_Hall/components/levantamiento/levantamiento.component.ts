@@ -11,11 +11,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { Router } from '@angular/router';
+import { StepperComponent } from 'src/app/shared/stepper/stepper.component';
+import { SteperDinamic } from 'src/app/utils/interface/SteperDinamic';
+import { SteperLevantamiento } from 'src/app/view/home/constants/SteperLevantamiento';
 import { requestSuccefull } from 'src/app/view/Timer_Platform/Interface/Datos-interfaces';
 import Swal from 'sweetalert2';
+import { Mobile, RequestHall } from '../../../../interfaces/requesHall';
 import { LayoutComponent } from '../../../layout/layout.component';
 import { FormModel } from '../../model/FormModel';
-import { RequestHall } from '../../model/requesHall';
 import { RegistroService } from '../../services/registro.service';
 
 @Component({
@@ -39,18 +42,20 @@ import { RegistroService } from '../../services/registro.service';
     MatStepperModule,
     FormsModule,
     ReactiveFormsModule,
-    LayoutComponent
+    LayoutComponent,
+    StepperComponent
   ],
   templateUrl: './levantamiento.component.html',
   styleUrl: './levantamiento.component.scss',
 })
 export class LevantamientoComponent {
   public step = signal(0);
+
+  public stepperData: SteperDinamic[] = SteperLevantamiento;
   public formRegister: FormGroup = new FormModel().formRegistro();
   public formCronometro: FormGroup = new FormModel().formRegistro();
-  public formJuezUno: FormGroup = new FormModel().formRegistro();
-  public formJuezDos: FormGroup = new FormModel().formRegistro();
-  public formJuezTres: FormGroup = new FormModel().formRegistro();
+  public eventStep: string = ''
+  private stepMovilData: Mobile[] = []
 
   constructor(private registroService$: RegistroService, private router$: Router) { }
 
@@ -66,19 +71,51 @@ export class LevantamientoComponent {
     this.step.update((i) => i - 1);
   }
 
+  steppExportData(data: Mobile[]): void {
+    this.eventStep = ''
+    this.stepMovilData = data
+    this.createHall()
+
+  }
+
+  sentEventSteper(event: string): void {
+
+    if (this.eventStep === 'submit'
+
+    ) {
+
+      if (
+        this.formRegister.invalid ||
+        this.formCronometro.invalid || this.stepMovilData.length <= 2
+      ) {
+        this.formRegister.markAllAsTouched()
+        this.formCronometro.markAllAsTouched()
+
+        Swal.fire({
+          icon: 'error',
+          title: "Oops...",
+          text: `${'Validar Formulario'}`,
+        });
+
+        this.eventStep = ''
+        return
+      }
+    }
+    this.formRegister.markAllAsTouched()
+    this.formCronometro.markAllAsTouched()
+    this.eventStep = event
+
+  }
+
   createHall(): void {
+
     if (
       this.formRegister.invalid ||
       this.formCronometro.invalid ||
-      this.formJuezUno.invalid ||
-      this.formJuezDos.invalid ||
-      this.formJuezTres.invalid
+      this.stepMovilData.length <= 2
     ) {
       this.formRegister.markAllAsTouched()
       this.formCronometro.markAllAsTouched()
-      this.formJuezUno.markAllAsTouched()
-      this.formJuezDos.markAllAsTouched()
-      this.formJuezTres.markAllAsTouched()
 
       Swal.fire({
         icon: 'error',
@@ -88,11 +125,9 @@ export class LevantamientoComponent {
       return
     }
 
-
-
     const reques: RequestHall = {
       RegistrationPlatform: this.formRegister.value,
-      mobile: [this.formJuezUno.value, this.formJuezDos.value, this.formJuezTres.value],
+      mobile: this.stepMovilData,
       chronometer: this.formCronometro.value
     }
 
@@ -125,12 +160,6 @@ export class LevantamientoComponent {
               text: "Texto copiado al portapapeles.",
               icon: "success"
             });
-
-            this.formCronometro.reset();
-            this.formRegister.reset();
-            this.formJuezUno.reset();
-            this.formJuezDos.reset();
-            this.formJuezTres.reset();
           }).catch(err => {
             console.error('Error al copiar el texto: ', err);
           });
