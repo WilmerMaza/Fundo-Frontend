@@ -169,15 +169,23 @@ export class LoginComponent implements OnInit {
       'chronometer': () => !chronometerList.some((item: DefaulPlatform) => type.includes(item.value)),
       'mobile': () => false,
       'RegistrationPlatform': () => false,
+      'BoardPlatform': () => false
     };
 
     return platformLogic[params] ? platformLogic[params]() : true;
   }
 
   selectPlatform(select: string): void {
+    this.selectedTPlatform = '';
+    this.loginForm.get('tPlatform')?.reset()
     const platformActions: { [key: string]: () => void } = {
       'mobile': () => { this.isplatformTypeSelect = false; },
       'RegistrationPlatform': () => { this.isplatformTypeSelect = false; },
+      'BoardPlatform': () => {
+        this.isplatformTypeSelect = false; this.selectedTPlatform = 'Public';
+        this.loginForm.get('tPlatform')?.setValue('Public')
+        this.platformType = 'Public'
+      }
       // Agrega otras plataformas aquí según sea necesario
     };
 

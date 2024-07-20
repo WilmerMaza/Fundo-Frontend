@@ -11,6 +11,11 @@ export interface Athlete {
   IwfCoiCode: string
   Primer_Envion: number
   Primer_Arranque: number
+  Id?: string
+  tipo?: string
+  id?: string
+  evaluarNumber?: number
+  intento?: number
 }
 
 

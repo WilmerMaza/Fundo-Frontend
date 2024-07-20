@@ -45,7 +45,6 @@ export class StepperComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder) {
     effect(() => {
-      console.log(this.actionStepper());
       if (this.actionStepper()) {
         this.validAction(this.actionStepper()!)
       }
