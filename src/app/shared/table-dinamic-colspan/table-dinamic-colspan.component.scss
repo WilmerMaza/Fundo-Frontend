@@ -1,0 +1,39 @@
+@use "@assets/colors.scss" as *;
+.table.table-hover {
+  .content-header-table {
+    .column-colspan {
+      text-align: center;
+      border: 1px solid #e7e7e7;
+    }
+    .child {
+      background: $color-azul-title;
+      color: $color-white;
+    }
+
+    .vertical-center {
+      vertical-align: middle;
+    }
+  }
+  .highlight-min {
+    background-color: #9a0525; /* Color para el valor mínimo */
+  }
+
+  .highlight-second-min {
+    background-color: #ffb900; /* Color para el segundo valor mínimo */
+  }
+  .success {
+    background: #00b0f0;
+    color: $color-white;
+  }
+  .failed {
+    background: #ff0000;
+    color: $color-white;
+  }
+  .child-border {
+    border-right: 1px solid #e7e7e7;
+  }
+  .columnId {
+    width: 40px;
+    border-radius: 3px;
+  }
+}

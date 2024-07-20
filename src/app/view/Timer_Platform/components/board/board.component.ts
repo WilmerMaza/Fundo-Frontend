@@ -14,7 +14,7 @@ import { arbitrator } from './../../../../utils/const';
     </div>
     <div class="header-grid-container">
       <div class="header-grid-item">
-        <div class="header-grid-item__top">{{ '2' }}</div>
+        <div class="header-grid-item__top">{{ Athlete().intento }}</div>
         <div class="header-grid-item__bottom">ATT.</div>
       </div>
 
@@ -42,7 +42,7 @@ import { arbitrator } from './../../../../utils/const';
       }
 
       <div class="header-grid-item">
-        <div class="header-grid-item__top">166</div>
+        <div class="header-grid-item__top">{{Athlete().evaluarNumber}}</div>
         <div class="header-grid-item__bottom">Kg</div>
       </div>
     </div>
@@ -67,7 +67,7 @@ import { arbitrator } from './../../../../utils/const';
           <span [class]="'fi fi-' + Athlete().IwfCoiCode"></span>
         </div>
         <div class="details-grid__player-number">
-          {{ Athlete().Numero_Sorteo }}
+          {{ Athlete().id }}
         </div>
       </div>
     </div>

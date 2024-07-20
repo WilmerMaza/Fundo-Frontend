@@ -30,6 +30,20 @@ export const routes: Routes = [
     {
         path: 'RegistrationPlatform',
         canActivate: [jwtGuard, platformGuard],
+        data: {
+            Public: false
+        },
+        loadComponent: () =>
+            import('./view/Registration_Platform/components/registration/registration-platform.component').then(
+                (c) => c.RegistrationPlatformComponent
+            ),
+    },
+    {
+        path: 'BoardPlatform/Public',
+        canActivate: [jwtGuard],
+        data: {
+            Public: true
+        },
         loadComponent: () =>
             import('./view/Registration_Platform/components/registration/registration-platform.component').then(
                 (c) => c.RegistrationPlatformComponent

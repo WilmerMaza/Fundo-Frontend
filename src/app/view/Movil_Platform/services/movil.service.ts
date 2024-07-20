@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { FundoService } from 'src/app/services/Fundo.service';
-import { DataDeportista, requestSuccefull } from '../../Timer_Platform/Interface/Datos-interfaces';
+import { requestSuccefull } from '../../Timer_Platform/Interface/Datos-interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovilService {
-  private notificaciones = new Subject<DataDeportista>();
-  notificaciones$: Observable<DataDeportista> = this.notificaciones.asObservable();
+  private notificaciones = new Subject<any>();
+  notificaciones$: Observable<any> = this.notificaciones.asObservable();
   private eventSources: { [key: string]: EventSource } = {};
   constructor(private fundoService$: FundoService) { }
 
@@ -53,8 +53,8 @@ export class MovilService {
     this.eventSources = {};
   }
 
-  postListCronometro(event: string, partidaId: string, body: any): Observable<requestSuccefull> {
-    const endpoint = `putu/Register/${event}/${partidaId}`;
+  postListCronometro(body: any): Observable<requestSuccefull> {
+    const endpoint = `puntuaciones/insert`;
     return this.fundoService$.post(endpoint, body);
   }
 }

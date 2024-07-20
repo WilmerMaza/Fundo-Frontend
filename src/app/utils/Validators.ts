@@ -25,7 +25,7 @@ export const regExps: { [key: string]: RegExp } = {
   numberWDecimal: /^(\d*|(\d+))(\.\d+)?$/,
   telefonoRegex: /^\d{8,15}$/,
   regexcomma: /,/g,
-  escapeCaracteresEspeciales:/[-\/\\^$*+?.()|[\]{}]/g
+  escapeCaracteresEspeciales: /[-\/\\^$*+?.()|[\]{}]/g
 };
 export class Validators {
   static isNullOrUndefined<T>(
@@ -33,6 +33,13 @@ export class Validators {
   ): obj is null | undefined {
     return typeof obj === 'undefined' || obj === null;
   }
+
+  static isEmpy<T>(
+    obj: any
+  ): boolean {
+    return obj.length <= 0;
+  }
+
 }
 
 export class DateValidators {

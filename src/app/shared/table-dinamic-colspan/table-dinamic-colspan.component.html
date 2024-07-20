@@ -1,0 +1,86 @@
+<table class="table table-hover">
+  <thead class="content-header-table">
+    <tr>
+      @for (columna of columnsToDisplay; track $index ; ) { @if
+      (!columna.children) {
+      <ng-container>
+        <th
+          [attr.rowspan]="2"
+          class="col vertical-center"
+          [ngClass]="{
+            'text-left': columna.custom,
+            'text-center': !columna.custom
+          }"
+        >
+          {{ columna.displayname }}
+        </th>
+      </ng-container>
+      }@else if (columna.children) {
+      <ng-container>
+        <th [attr.colspan]="columna.colspan" class="column-colspan">
+          {{ columna.displayname }}
+        </th>
+      </ng-container>
+      } }
+    </tr>
+    <tr>
+      @for (columna of columnsToDisplay; track $index ; ) { @if
+      (columna.children) {
+      <ng-container>
+        @for (child of columna.children; track $index ;let last = $last) {
+        <th class="text-center child" [ngClass]="{ 'child-border': last }">
+          {{ child.displayname }}
+        </th>
+        }
+      </ng-container>
+      } }
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of dataSource.data; track item ; let index = $index) {
+    <tr>
+      @for (columna of columnsToDisplay; track columna) {
+      <ng-container>
+        @if (columna.estado && !columna.children) {
+        <ng-container>
+          <td
+            [ngClass]="{
+              'text-left': columna.custom,
+              'text-center': !columna.custom,
+              'highlight-min': MinUnoArranque(item) && columna.name === 'id',
+              'highlight-second-min':
+                SecondArranque(item) && columna.name === 'id',
+              columnId: columna.name === 'id'
+            }"
+          >
+            {{ item[columna.name] }}
+          </td> </ng-container
+        >}@else if (columna.children) {
+        <ng-container>
+          @for (child of columna.children; track $index) {
+          <ng-container>
+            <td
+              class="text-center child-border"
+              [ngClass]="{
+                'highlight-second-min':
+                  MinUnoArranque(item) && child.name === 'id',
+                'highlight-min':
+                  item[child.name] === secondMinUnoArranque &&
+                  child.name === 'id',
+                success: successValid(item, child.name),
+                failed: FailedValid(item, child.name),
+               
+              }"
+            >
+              {{ item[child.name] }}
+            </td>
+          </ng-container>
+          }
+        </ng-container>
+        }
+      </ng-container>
+      }
+    </tr>
+    }
+  </tbody>
+</table>

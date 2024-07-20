@@ -3,6 +3,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { concatMap } from 'rxjs';
 import { Ijwt } from 'src/app/models/dataUserModel';
 import { AuthService } from 'src/app/services/auth-service.service';
+import { PAISES_LIST } from 'src/app/utils/constants/PaisesList';
+import { Value } from 'src/app/utils/interface/value';
 import { environment } from 'src/environments/environment';
 import { BoardComponent } from '../components/board/board.component';
 import { Buton_boardComponent } from '../components/buton_board/buton_board.component';
@@ -78,6 +80,8 @@ export class TimerArbitroComponent implements OnInit, OnDestroy {
       })
     ).subscribe({
       next: ({ body }: DataDeportista) => {
+
+        body.IwfCoiCode = PAISES_LIST.find((iwf: Value) => iwf.name === body.IwfCoiCode)!.value
         this.dataAthlete = body;
       },
       error: error => {
@@ -102,6 +106,7 @@ export class TimerArbitroComponent implements OnInit, OnDestroy {
       })
     ).subscribe({
       next: ({ body }: DataDeportista) => {
+        body.IwfCoiCode = PAISES_LIST.find((iwf: Value) => iwf.name === body.IwfCoiCode)!.value
         this.dataAthlete = body;
       },
       error: error => {
